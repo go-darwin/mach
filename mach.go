@@ -17,7 +17,7 @@ func machReplyPort() uintptr
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
-// mach_trap:26:mach_reply_port
+// mach_trap:26: mach_reply_port
 func MachReplyPort() uintptr {
 	return machReplyPort()
 }
@@ -29,7 +29,7 @@ func threadSelfTrap() uintptr
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
-// mach_trap:27:thread_self_trap
+// mach_trap:27: thread_self_trap
 func ThreadSelfTrap() uintptr {
 	return threadSelfTrap()
 }
@@ -41,7 +41,7 @@ func taskSelfTrap() uintptr
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
-// mach_trap:28:task_self_trap
+// mach_trap:28: task_self_trap
 func TaskSelfTrap() uintptr {
 	return taskSelfTrap()
 }
@@ -53,7 +53,7 @@ func hostSelfTrap() uintptr
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
-// mach_trap:29:host_self_trap
+// mach_trap:29: host_self_trap
 func HostSelfTrap() uintptr {
 	return hostSelfTrap()
 }
@@ -65,7 +65,7 @@ func machMsgTrap(unsafe.Pointer, uint32, uint32, uint32, uint32, uint32, uint32)
 //
 // Returns the all of mach_msg_send and mach_msg_receive error codes.
 //
-// mach_trap:31:mach_msg_trap
+// mach_trap:31: mach_msg_trap
 func MachMsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) uint32 {
 	return machMsgTrap(msg, opt, ssize, rsize, rname, to, not)
 }
