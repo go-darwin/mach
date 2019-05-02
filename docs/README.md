@@ -278,6 +278,7 @@ const char * mach_syscall_name_table[MACH_TRAP_TABLE_COUNT] = {
 
 ### Go
 - [golang.org/x/sys/unix/zsyscall_darwin_amd64.s](https://github.com/golang/sys/blob/master/unix/zsyscall_darwin_amd64.s)
+- [davecheney/sys_darwin_amd64.s](https://gist.github.com/davecheney/cce4d956f793b5f46abe)
 
 ### C
 
