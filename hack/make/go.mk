@@ -26,16 +26,6 @@ GO_TEST_FLAGS ?=
 GO_BENCH_FUNC ?= .
 GO_BENCH_FLAGS ?= -benchmem
 
-ifneq ($(shell command -v git),)
-VERSION := $(shell cat VERSION.txt)
-GIT_COMMIT := $(shell git rev-parse --short HEAD)
-GIT_UNTRACKED_CHANGES:= $(shell git status --porcelain --untracked-files=no)
-ifneq ($(GIT_UNTRACKED_CHANGES),)
-	GIT_COMMIT := $(GIT_COMMIT)-dirty
-endif
-CTIMEVAR:=-X=main.version=$(VERSION) -X=main.gitCommit=$(GIT_COMMIT)
-endif
-
 CGO_ENABLED ?= 0
 GO_GCFLAGS=
 GO_LDFLAGS=-s -w $(CTIMEVAR)
