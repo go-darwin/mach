@@ -1,0 +1,9 @@
+# mach project gitattributes file
+# https://github.com/github/linguist#using-gitattributes
+# https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
+
+docs linguist-documentation
+*.pb.go linguist-generated
+*_string.go linguist-generated
+*_gen.go linguist-generated
+vendor/* linguist-vendored
