@@ -11,55 +11,55 @@ import (
 )
 
 //go:nosplit
-func machReplyPort() uintptr
+func machReplyPort() (ret uint32)
 
 // MachReplyPort allocate a port for the caller.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
 // mach_trap:26: mach_reply_port
-func MachReplyPort() uintptr {
+func MachReplyPort() uint32 {
 	return machReplyPort()
 }
 
 //go:nosplit
-func threadSelfTrap() uintptr
+func threadSelfTrap() (ret uint32)
 
 // ThreadSelfTrap give the caller send rights for his own thread port.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
 // mach_trap:27: thread_self_trap
-func ThreadSelfTrap() uintptr {
+func ThreadSelfTrap() uint32 {
 	return threadSelfTrap()
 }
 
 //go:nosplit
-func taskSelfTrap() uintptr
+func taskSelfTrap() (ret uint32)
 
 // TaskSelfTrap give the caller send rights for his own task port.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
 // mach_trap:28: task_self_trap
-func TaskSelfTrap() uintptr {
+func TaskSelfTrap() uint32 {
 	return taskSelfTrap()
 }
 
 //go:nosplit
-func hostSelfTrap() uintptr
+func hostSelfTrap() (ret uint32)
 
 // HostSelfTrap give the caller send rights for his own host port.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
 // mach_trap:29: host_self_trap
-func HostSelfTrap() uintptr {
+func HostSelfTrap() uint32 {
 	return hostSelfTrap()
 }
 
 //go:nosplit
-func machMsgTrap(unsafe.Pointer, uint32, uint32, uint32, uint32, uint32, uint32) uint32
+func machMsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) (ret uint32)
 
 // MachMsgTrap possibly send a message; possibly receive a message.
 //
