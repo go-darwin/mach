@@ -13,12 +13,12 @@ import (
 //go:nosplit
 func machReplyPort() (ret uint32)
 
-// MachReplyPort allocate a port for the caller.
+// ReplyPort allocate a port for the caller.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
 // mach_trap:26: mach_reply_port
-func MachReplyPort() uint32 {
+func ReplyPort() uint32 {
 	return machReplyPort()
 }
 
@@ -61,11 +61,11 @@ func HostSelfTrap() uint32 {
 //go:nosplit
 func machMsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) (ret uint32)
 
-// MachMsgTrap possibly send a message; possibly receive a message.
+// MsgTrap possibly send a message; possibly receive a message.
 //
 // Returns the all of mach_msg_send and mach_msg_receive error codes.
 //
 // mach_trap:31: mach_msg_trap
-func MachMsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) uint32 {
+func MsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) uint32 {
 	return machMsgTrap(msg, opt, ssize, rsize, rname, to, not)
 }
