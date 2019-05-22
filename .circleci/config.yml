@@ -1,12 +1,12 @@
 version: 2.1
 
 orbs:
-  golang: cci-orb/golang@0.0.8
+  golang: cci-orb/golang@volatile
   codecov: codecov/codecov@volatile
 
 darwin: &darwin
   executor: golang/macos
-  working_directory: ~/go/src/github.com/go-darwin/mach
+  working_directory: ~/go/src/go-darwin.dev/mach
 
 jobs:
   darwin:

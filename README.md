@@ -2,7 +2,7 @@
 
 [![CircleCI][circleci-badge]][circleci] [![godoc.org][godoc-badge]][godoc] [![codecov.io][codecov-badge]][codecov] [![Releases][release-badge]][release] [![GA][ga-badge]][ga]
 
-Package mach provides the low-level darwin syscalls.
+Package mach provides the low-level darwin Mach system calls.
 
 ## License
 
@@ -14,7 +14,7 @@ The mach is released under the [BSD 3-Clause License][license-bsd-3-clause].
 
 <!-- badge links -->
 [circleci]: https://circleci.com/gh/go-darwin/workflows/mach
-[godoc]: https://godoc.org/github.com/go-darwin/mach
+[godoc]: https://godoc.org/go-darwin.dev/mach
 [codecov]: https://codecov.io/gh/go-darwin/mach
 [release]: https://github.com/go-darwin/mach/releases
 [ga]: https://github.com/go-darwin/mach

@@ -1,1 +1,1 @@
-module github.com/go-darwin/mach
+module go-darwin.dev/mach
