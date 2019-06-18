@@ -1,5 +1,10 @@
 # docs
 
+## dispatch_semaphore_create
+
+- [runtime: use dispatch semaphores on Darwin](https://github.com/golang/go/commit/85d56c3096636cebd6e0aea846d78599edbbb9e2)
+     - https://golang.org/cl/182258
+
 ## darwin syscall
 
 from [apple/darwin-xnu@xnu-4903.221.2/osfmk/kern/syscall_sw.c](https://github.com/apple/darwin-xnu/blob/xnu-4903.221.2/osfmk/kern/syscall_sw.c#L104-L372).
