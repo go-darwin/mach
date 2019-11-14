@@ -9,8 +9,10 @@ darwin: &darwin
   working_directory: ~/go/src/go-darwin.dev/mach
 
 jobs:
-  darwin:
+  test:
     <<: *darwin
+    environment:
+      GO111MODULE: "on"
     steps:
       - run:
           name: Show versions
@@ -26,22 +28,21 @@ jobs:
           paths: "~/go/pkg/mod"
       - run:
           name: Test and collect coverages
-          environment:
-            GO111MODULE: "on"
           command: |
             make coverage/ci
       - codecov/upload:
-          file: "/tmp/ci/artifacts/coverage.out"
-          flags: darwin
+          file: "/tmp/artifacts/coverage.out"
       - store_artifacts:
-          path: /tmp/ci/artifacts
+          path: /tmp/artifacts
       - store_artifacts:
-          path: /tmp/ci/artifacts
+          path: /tmp/artifacts
       - store_test_results:
-          path: /tmp/ci/test-results
+          path: /tmp/test-results
 
   lint:
     <<: *darwin
+    environment:
+      GO111MODULE: "on"
     steps:
       - checkout
       - golang/homebrew
@@ -57,7 +58,7 @@ workflows:
   version: 2
   workflows:
     jobs:
-      - darwin:
+      - test:
           context: org-global
       - lint:
           context: org-global

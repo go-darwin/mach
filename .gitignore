@@ -47,4 +47,4 @@ _testmain.go
 coverage.*
 
 # binary
-/mach
+bin/
