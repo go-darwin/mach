@@ -17,7 +17,7 @@ func machReplyPort() (ret uint32)
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
-// mach_trap:26: mach_reply_port
+//  mach_trap:26: mach_reply_port
 func ReplyPort() uint32 {
 	return machReplyPort()
 }
@@ -29,7 +29,7 @@ func threadSelfTrap() (ret uint32)
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
-// mach_trap:27: thread_self_trap
+//  mach_trap:27: thread_self_trap
 func ThreadSelfTrap() uint32 {
 	return threadSelfTrap()
 }
@@ -41,7 +41,7 @@ func taskSelfTrap() (ret uint32)
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
-// mach_trap:28: task_self_trap
+//  mach_trap:28: task_self_trap
 func TaskSelfTrap() uint32 {
 	return taskSelfTrap()
 }
@@ -53,7 +53,7 @@ func hostSelfTrap() (ret uint32)
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
-// mach_trap:29: host_self_trap
+//  mach_trap:29: host_self_trap
 func HostSelfTrap() uint32 {
 	return hostSelfTrap()
 }
@@ -61,11 +61,13 @@ func HostSelfTrap() uint32 {
 //go:nosplit
 func machMsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) (ret uint32)
 
+//go:cgo_unsafe_args
+
 // MsgTrap possibly send a message; possibly receive a message.
 //
 // Returns the all of mach_msg_send and mach_msg_receive error codes.
 //
-// mach_trap:31: mach_msg_trap
+//  mach_trap:31: mach_msg_trap
 func MsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) uint32 {
 	return machMsgTrap(msg, opt, ssize, rsize, rname, to, not)
 }
