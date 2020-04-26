@@ -35,7 +35,7 @@ TEXT ·hostSelfTrap(SB), NOSPLIT, $8
 	RET
 
 // func machMsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) (ret uint32)
-TEXT ·machMsgTrap(SB), NOSPLIT, $8
+TEXT ·machMsgTrap(SB), NOSPLIT, $40
 	MOVQ  msg+0(FP), DI
 	MOVL  opt+8(FP), SI
 	MOVL  ssize+0(SP), DX
