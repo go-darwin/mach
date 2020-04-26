@@ -2717,7 +2717,7 @@ kd_event_t kd_events[] = {
 
 ### syscall_sw.c
 
-from [apple/darwin-xnu@xnu-4903.221.2/osfmk/kern/syscall_sw.c](https://github.com/apple/darwin-xnu/blob/xnu-4903.221.2/osfmk/kern/syscall_sw.c#L104-L372).
+from [apple-opensource/xnu/osfmk/kern/syscall_sw.c@6153.11.26](https://github.com/apple-opensource/xnu/blob/6153.11.26/osfmk/kern/syscall_sw.c#L104-L372).
 
 ```c
 const mach_trap_t	mach_trap_table[MACH_TRAP_TABLE_COUNT] = {
@@ -2798,8 +2798,8 @@ const mach_trap_t	mach_trap_table[MACH_TRAP_TABLE_COUNT] = {
 /* 73 */	MACH_TRAP(kern_invalid, 0, 0, NULL),
 /* 74 */	MACH_TRAP(kern_invalid, 0, 0, NULL),
 /* 75 */	MACH_TRAP(kern_invalid, 0, 0, NULL),
-/* 76 */	MACH_TRAP(kern_invalid, 0, 0, NULL),
-/* 77 */	MACH_TRAP(kern_invalid, 0, 0, NULL),
+/* 76 */	MACH_TRAP(_kernelrpc_mach_port_type_trap, 3, 3, munge_wwww),
+/* 77 */	MACH_TRAP(_kernelrpc_mach_port_request_notification_trap, 7, 7, munge_wwwwwww),
 /* 78 */	MACH_TRAP(kern_invalid, 0, 0, NULL),
 /* 79 */	MACH_TRAP(kern_invalid, 0, 0, NULL),
 /* 80 */	MACH_TRAP(kern_invalid, 0, 0, NULL),
@@ -2819,7 +2819,7 @@ const mach_trap_t	mach_trap_table[MACH_TRAP_TABLE_COUNT] = {
 /* 94 */	MACH_TRAP(mk_timer_cancel_trap, 2, 2, munge_ww),
 /* 95 */	MACH_TRAP(mk_timer_arm_leeway_trap, 4, 6, munge_wlll),
 /* traps 64 - 95 reserved (debo) */
-/* 96 */	MACH_TRAP(kern_invalid, 0, 0, NULL),
+/* 96 */	MACH_TRAP(debug_control_port_for_pid, 3, 3, munge_www),
 /* 97 */	MACH_TRAP(kern_invalid, 0, 0, NULL),
 /* 98 */	MACH_TRAP(kern_invalid, 0, 0, NULL),
 /* 99 */	MACH_TRAP(kern_invalid, 0, 0, NULL),
@@ -2934,8 +2934,8 @@ const char * mach_syscall_name_table[MACH_TRAP_TABLE_COUNT] = {
 /* 74 */	"kern_invalid",
 /* 75 */	"kern_invalid",
 /* 76 */	"kern_invalid",
-/* 77 */	"kern_invalid",
-/* 78 */	"kern_invalid",
+/* 77 */	"_kernelrpc_mach_port_type_trap",
+/* 78 */	"_kernelrpc_mach_port_request_notification_trap",
 /* 79 */	"kern_invalid",
 /* 80 */	"kern_invalid",
 /* 81 */	"kern_invalid",
@@ -2954,7 +2954,7 @@ const char * mach_syscall_name_table[MACH_TRAP_TABLE_COUNT] = {
 /* 94 */	"mk_timer_cancel_trap",
 /* 95 */	"kern_invalid",
 /* traps 64 - 95 reserved (debo) */
-/* 96 */	"kern_invalid",
+/* 96 */	"debug_control_port_for_pid",
 /* 97 */	"kern_invalid",
 /* 98 */	"kern_invalid",
 /* 99 */	"kern_invalid",
