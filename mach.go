@@ -61,8 +61,6 @@ func HostSelfTrap() uint32 {
 //go:nosplit
 func machMsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) (ret uint32)
 
-//go:cgo_unsafe_args
-
 // MsgTrap possibly send a message; possibly receive a message.
 //
 // Returns the all of mach_msg_send and mach_msg_receive error codes.

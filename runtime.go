@@ -14,7 +14,6 @@ import (
 func funcPC(f interface{}) uintptr
 
 //go:nosplit
-//go:cgo_unsafe_args
 
 // FuncPC returns the entry PC of the function f.
 // It assumes that f is a func value. Otherwise the behavior is undefined.
@@ -32,7 +31,6 @@ func FuncPC(f interface{}) uintptr {
 func libcCall(fn, arg unsafe.Pointer) int32
 
 //go:nosplit
-//go:cgo_unsafe_args
 
 // LibcCall calls a fn with arg as its argument. Return what fn returns.
 // fn is the raw pc value of the entry point of the desired function.
@@ -47,7 +45,6 @@ func LibcCall(fn, arg unsafe.Pointer) int32 {
 func syscall(fn, a1, a2, a3 uintptr) (r1, r2, err uintptr)
 
 //go:nosplit
-//go:cgo_unsafe_args
 
 // Syscall calls a function in libc on behalf of the syscall package.
 //
@@ -76,7 +73,6 @@ func Syscall(fn, a1, a2, a3 uintptr) (r1, r2, err uintptr) {
 func syscall6(fn, a1, a2, a3, a4, a5, a6 uintptr) (r1, r2, err uintptr)
 
 //go:nosplit
-//go:cgo_unsafe_args
 
 // Syscall6 calls a function in libc on behalf of the syscall package.
 //
@@ -108,7 +104,6 @@ func Syscall6(fn, a1, a2, a3, a4, a5, a6 uintptr) (r1, r2, err uintptr) {
 func syscall6X(fn, a1, a2, a3, a4, a5, a6 uintptr) (r1, r2, err uintptr)
 
 //go:nosplit
-//go:cgo_unsafe_args
 
 // Syscall6X calls a function in libc on behalf of the syscall package.
 //
@@ -150,7 +145,6 @@ func SyscallPtr(fn, a1, a2, a3 uintptr) (r1, r2, err uintptr) {
 func rawSyscall(fn, a1, a2, a3 uintptr) (r1, r2, err uintptr)
 
 //go:nosplit
-//go:cgo_unsafe_args
 
 // RawSyscall calls a function in libc on behalf of the syscall package.
 func RawSyscall(fn, a1, a2, a3 uintptr) (r1, r2, err uintptr) {
@@ -162,7 +156,6 @@ func RawSyscall(fn, a1, a2, a3 uintptr) (r1, r2, err uintptr) {
 func rawSyscall6(fn, a1, a2, a3, a4, a5, a6 uintptr) (r1, r2, err uintptr)
 
 //go:nosplit
-//go:cgo_unsafe_args
 
 // RawSyscall6 calls a function in libc on behalf of the syscall package.
 func RawSyscall6(fn, a1, a2, a3, a4, a5, a6 uintptr) (r1, r2, err uintptr) {
