@@ -9,54 +9,9 @@
 
 ### syscall_sw.c
 
-from [apple-opensource/xnu/osfmk/kern/syscall_sw.c@6153.11.26](https://github.com/apple-opensource/xnu/blob/6153.11.26/osfmk/kern/syscall_sw.c#L104-L372).
+from [apple-opensource/xnu/osfmk/kern/syscall_sw.c@6153.61.1](https://github.com/apple-opensource/xnu/blob/6153.61.1/osfmk/kern/syscall_sw.c#L104-L372).
 
 ```c
-#include <mach/mach_types.h>
-#include <mach/mach_traps.h>
-
-#include <kern/syscall_sw.h>
-#if CONFIG_REQUIRES_U32_MUNGING || (__arm__ && (__BIGGEST_ALIGNMENT__ > 4))
-#include <sys/munge.h>
-#endif
-
-/* Forwards */
-
-
-/*
- *	To add a new entry:
- *		Add an "MACH_TRAP(routine, arg_count, num_32_bit_words, munge_routine)" to the table below.
- *		where,
- *		- routine:		The trap handling routine in the kernel
- *		- arg_count:		The number of arguments for the mach trap (independant of arch/arg size).
- *					This value also defines the number of 64-bit words copied in for a U64 process.
- *		- num_32_bit_words:	The number of 32-bit words to be copied in for a U32 process.
- *		- munge_routine:	The argument munging routine to align input args correctly.
- *
- *		Also, add trap definition to mach/syscall_sw.h and
- *		recompile user library.
- *
- *
- * WARNING:	If you add a trap which requires more than 7
- *		parameters, mach/{machine}/syscall_sw.h and {machine}/trap.c
- *		and/or {machine}/locore.s may need to be modified for it
- *		to work successfully.
- *
- * WARNING:	Don't use numbers 0 through -9.  They (along with
- *		the positive numbers) are reserved for Unix.
- */
-
-int kern_invalid_debug = 0;
-
-/* Include declarations of the trap functions. */
-
-#include <mach/mach_traps.h>
-#include <mach/mach_syscalls.h>
-#include <kern/syscall_subr.h>
-
-#include <kern/clock.h>
-#include <mach/mk_timer.h>
-
 const mach_trap_t       mach_trap_table[MACH_TRAP_TABLE_COUNT] = {
 /* 0 */ MACH_TRAP(kern_invalid, 0, 0, NULL),
 /* 1 */ MACH_TRAP(kern_invalid, 0, 0, NULL),
@@ -326,18 +281,6 @@ const char * mach_syscall_name_table[MACH_TRAP_TABLE_COUNT] = {
 /* 126 */ "kern_invalid",
 /* 127 */ "kern_invalid",
 };
-
-int     mach_trap_count = (sizeof(mach_trap_table) / sizeof(mach_trap_table[0]));
-
-kern_return_t
-kern_invalid(
-	__unused struct kern_invalid_args *args)
-{
-	if (kern_invalid_debug) {
-		Debugger("kern_invalid mach trap");
-	}
-	return KERN_INVALID_ARGUMENT;
-}
 ```
 
 ### Go
@@ -368,6 +311,8 @@ version: [xnu-4903.221.2](https://opensource.apple.com/source/xnu/xnu-4903.221.2
 
 
 ## xnu/bsd/kern/trace_codes
+
+from [apple-opensource/xnu/bsd/kern/trace_codes@6153.61.1](https://github.com/apple-opensource/xnu/blob/6153.61.1/bsd/kern/trace_codes).
 
 ```c
 0x1020000	KTrap_DivideError
