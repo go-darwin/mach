@@ -4,13 +4,10 @@ orbs:
   golang: cci-orb/golang@volatile
   codecov: codecov/codecov@volatile
 
-darwin: &darwin
-  executor: golang/macos
-  working_directory: ~/go/src/go-darwin.dev/mach
-
 jobs:
   test:
-    <<: *darwin
+    executor: golang/macos
+    working_directory: ~/go/src/go-darwin.dev/mach
     environment:
       GO111MODULE: "on"
     steps:
@@ -22,7 +19,8 @@ jobs:
             xcodebuild -version
             system_profiler SPHardwareDataType
       - checkout
-      - golang/homebrew
+      - golang/install:
+          version: 1.14.2
       - golang/gomod:
           file: "go.mod"
           paths: "~/go/pkg/mod"
@@ -34,18 +32,18 @@ jobs:
           file: "/tmp/artifacts/coverage.out"
       - store_artifacts:
           path: /tmp/artifacts
-      - store_artifacts:
-          path: /tmp/artifacts
       - store_test_results:
           path: /tmp/test-results
 
   lint:
-    <<: *darwin
+    executor: golang/macos
+    working_directory: ~/go/src/go-darwin.dev/mach
     environment:
       GO111MODULE: "on"
     steps:
       - checkout
-      - golang/homebrew
+      - golang/install:
+          version: 1.14.2
       - golang/gomod:
           file: "go.mod"
           paths: "~/go/pkg/mod"
