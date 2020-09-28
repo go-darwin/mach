@@ -34,6 +34,17 @@ func ThreadSelfTrap() uint32 {
 	return threadSelfTrap()
 }
 
+// MachThreadSelf give the caller send rights for his own thread port.
+//
+// Returns the MACH_PORT_NULL if there are any resource failures or other errors.
+//
+//  mach_trap:27: thread_self_trap
+//
+// Deprecated: use ThreadSelfTrap instead of.
+func MachThreadSelf() uint32 {
+	return threadSelfTrap()
+}
+
 //go:nosplit
 func taskSelfTrap() (ret uint32)
 
@@ -46,6 +57,17 @@ func TaskSelfTrap() uint32 {
 	return taskSelfTrap()
 }
 
+// MachTaskSelf give the caller send rights for his own task port.
+//
+// Returns the MACH_PORT_NULL if there are any resource failures or other errors.
+//
+//  mach_trap:28: task_self_trap
+//
+// Deprecated: use TaskSelfTrap instead of.
+func MachTaskSelf() uint32 {
+	return taskSelfTrap()
+}
+
 //go:nosplit
 func hostSelfTrap() (ret uint32)
 
@@ -55,6 +77,17 @@ func hostSelfTrap() (ret uint32)
 //
 //  mach_trap:29: host_self_trap
 func HostSelfTrap() uint32 {
+	return hostSelfTrap()
+}
+
+// MachHostSelf give the caller send rights for his own host port.
+//
+// Returns the MACH_PORT_NULL if there are any resource failures or other errors.
+//
+//  mach_trap:29: host_self_trap
+//
+// Deprecated: use HostSelfTrap instead of.
+func MachHostSelf() uint32 {
 	return hostSelfTrap()
 }
 
