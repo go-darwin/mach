@@ -9,7 +9,7 @@
 
 ### syscall_sw.c
 
-from [apple-opensource/xnu/osfmk/kern/syscall_sw.c@6153.61.1](https://github.com/apple-opensource/xnu/blob/6153.61.1/osfmk/kern/syscall_sw.c#L104-L372).
+from [apple-opensource/xnu/osfmk/kern/syscall_sw.c@6153.141.1](https://github.com/apple-opensource/xnu/blob/6153.141.1/osfmk/kern/syscall_sw.c#L104-L372).
 
 ```c
 const mach_trap_t       mach_trap_table[MACH_TRAP_TABLE_COUNT] = {
@@ -312,7 +312,7 @@ version: [xnu-4903.221.2](https://opensource.apple.com/source/xnu/xnu-4903.221.2
 
 ## xnu/bsd/kern/trace_codes
 
-from [apple-opensource/xnu/bsd/kern/trace_codes@6153.61.1](https://github.com/apple-opensource/xnu/blob/6153.61.1/bsd/kern/trace_codes).
+from [apple-opensource/xnu/bsd/kern/trace_codes@6153.141.1](https://github.com/apple-opensource/xnu/blob/6153.141.1/bsd/kern/trace_codes).
 
 ```c
 0x1020000	KTrap_DivideError
@@ -563,6 +563,8 @@ from [apple-opensource/xnu/bsd/kern/trace_codes@6153.61.1](https://github.com/ap
 0x1300494	MACH_vm_page_expedite_no_memory
 0x1300498	MACH_vm_page_grab
 0x130049c	MACH_vm_page_release
+0x13004a0	MACH_vm_compressor_compact_and_swap
+0x13004a4	MACH_vm_compressor_do_delayed_compactions
 0x13004c0	MACH_vm_pressure_event
 0x13004c4	MACH_vm_execve
 0x13004c8	MACH_vm_wakeup_compactor_swapper
@@ -1309,6 +1311,7 @@ from [apple-opensource/xnu/bsd/kern/trace_codes@6153.61.1](https://github.com/ap
 0x3130164	VFS_devfs_label_associate_device
 0x3130168	VFS_devfs_label_associate_directory
 0x313016C	VFS_label_associate_fdesc
+0x3130170	VFS_mount_check_snapshot_mount
 0x3CF0000	CP_OFFSET_IO
 0x4010004	proc_exit
 0x4010008	force_exit
