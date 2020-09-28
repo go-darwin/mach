@@ -2476,3 +2476,7 @@ from [apple-opensource/xnu/bsd/kern/trace_codes@6153.61.1](https://github.com/ap
 0xff25abd8	MSG_semaphore_timedwait_signal
 0xffbebdcc	MSG_clock_alarm_reply
 ```
+
+## syscall.h
+
+[syscall.h.md](syscall.h.md)
