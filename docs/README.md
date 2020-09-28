@@ -1,9 +1,35 @@
 # docs
 
-## dispatch_semaphore_create
+## Go
+- [golang.org/x/sys/unix/zsyscall_darwin_amd64.s](https://github.com/golang/sys/blob/master/unix/zsyscall_darwin_amd64.s)
+- [davecheney/sys_darwin_amd64.s](https://gist.github.com/davecheney/cce4d956f793b5f46abe)
+
+### dispatch_semaphore_create
 
 - [runtime: use dispatch semaphores on Darwin](https://github.com/golang/go/commit/85d56c3096636cebd6e0aea846d78599edbbb9e2)
      - https://golang.org/cl/182258
+
+## C
+
+### xnu
+
+version: [xnu-4903.221.2](https://opensource.apple.com/source/xnu/xnu-4903.221.2)
+
+**bsd/kern/syscalls.master**
+
+- [bsd/kern/syscalls.master](https://github.com/apple/darwin-xnu/blob/master/osfmk/mach/syscall_sw.h): 
+    - github.com/apple/darwin-xnu
+- [bsd/kern/syscalls.master](https://opensource.apple.com/source/xnu/xnu-4903.221.2/bsd/kern/syscalls.master.auto.html)
+    - opensource.apple.com
+
+**osfmk/kern/syscall_sw.c, osfmk/kern/syscall_sw.h**
+
+- [osfmk/kern/syscall_sw.c](https://github.com/apple/darwin-xnu/blob/master/osfmk/kern/syscall_sw.c)
+- [osfmk/kern/syscall_sw.h](https://github.com/apple/darwin-xnu/blob/master/osfmk/kern/syscall_sw.h)
+    -  github.com/apple/darwin-xnu
+- [xnu/osfmk/kern/syscall_sw.c](https://opensource.apple.com/source/xnu/xnu-4903.221.2/osfmk/kern/syscall_sw.c.auto.html)
+- [xnu/osfmk/kern/syscall_sw.h](https://opensource.apple.com/source/xnu/xnu-4903.221.2/osfmk/kern/syscall_sw.h.auto.html)
+    - opensource.apple.com
 
 ## darwin mach syscall
 
@@ -282,33 +308,6 @@ const char * mach_syscall_name_table[MACH_TRAP_TABLE_COUNT] = {
 /* 127 */ "kern_invalid",
 };
 ```
-
-### Go
-- [golang.org/x/sys/unix/zsyscall_darwin_amd64.s](https://github.com/golang/sys/blob/master/unix/zsyscall_darwin_amd64.s)
-- [davecheney/sys_darwin_amd64.s](https://gist.github.com/davecheney/cce4d956f793b5f46abe)
-
-### C
-
-#### xnu
-
-version: [xnu-4903.221.2](https://opensource.apple.com/source/xnu/xnu-4903.221.2)
-
-**bsd/kern/syscalls.master**
-
-- [bsd/kern/syscalls.master](https://github.com/apple/darwin-xnu/blob/master/osfmk/mach/syscall_sw.h): 
-    - github.com/apple/darwin-xnu
-- [bsd/kern/syscalls.master](https://opensource.apple.com/source/xnu/xnu-4903.221.2/bsd/kern/syscalls.master.auto.html)
-    - opensource.apple.com
-
-**osfmk/kern/syscall_sw.c, osfmk/kern/syscall_sw.h**
-
-- [osfmk/kern/syscall_sw.c](https://github.com/apple/darwin-xnu/blob/master/osfmk/kern/syscall_sw.c)
-- [osfmk/kern/syscall_sw.h](https://github.com/apple/darwin-xnu/blob/master/osfmk/kern/syscall_sw.h)
-    -  github.com/apple/darwin-xnu
-- [xnu/osfmk/kern/syscall_sw.c](https://opensource.apple.com/source/xnu/xnu-4903.221.2/osfmk/kern/syscall_sw.c.auto.html)
-- [xnu/osfmk/kern/syscall_sw.h](https://opensource.apple.com/source/xnu/xnu-4903.221.2/osfmk/kern/syscall_sw.h.auto.html)
-    - opensource.apple.com
-
 
 ## xnu/bsd/kern/trace_codes
 
