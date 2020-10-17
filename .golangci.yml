@@ -3,11 +3,18 @@ run:
   deadline: 5m
   issues-exit-code: 1
   tests: true
-  # skip-dirs:
+  skip-dirs: []
+  skip-dirs-use-default: true
   skip-files:
     - ".*\\.pb\\.go"
     - ".*(.|_)gen\\.go"
   modules-download-mode: vendor
+  allow-parallel-runners: true
+
+output:
+  format: colored-line-number  # colored-line-number|line-number|json|tab|checkstyle|code-climate
+  print-issued-lines: true
+  print-linter-name: true
 
 linters-settings:
   errcheck:
@@ -24,6 +31,7 @@ linters-settings:
   golint:
     min-confidence: 0.3
   govet:
+    enable-all: true
     check-shadowing: false
   gocritic:
     enabled-tags:
@@ -65,9 +73,8 @@ linters:
   fast: true
 
 issues:
-  exclude-use-default: false
-
-output:
-  format: colored-line-number
-  print-issued-lines: true
-  print-linter-name: true
+  exclude-use-default: true
+  exclude-rules:
+  - linters:
+      - golint
+    text: "name will be used as mach"
