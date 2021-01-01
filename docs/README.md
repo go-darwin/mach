@@ -1,17 +1,22 @@
 # docs
 
-## Go
+## References
+
+### Go
+
 - [golang.org/x/sys/unix/zsyscall_darwin_amd64.s](https://github.com/golang/sys/blob/master/unix/zsyscall_darwin_amd64.s)
 - [davecheney/sys_darwin_amd64.s](https://gist.github.com/davecheney/cce4d956f793b5f46abe)
+- [shirou/gopsutil: psutil for golang](https://github.com/shirou/gopsutil/tree/master/v3)
+  - [pkg.go.dev](https://pkg.go.dev/github.com/shirou/gopsutil/v3)
 
-### dispatch_semaphore_create
+#### dispatch_semaphore_create
 
 - [runtime: use dispatch semaphores on Darwin](https://github.com/golang/go/commit/85d56c3096636cebd6e0aea846d78599edbbb9e2)
      - https://golang.org/cl/182258
 
-## C
+### C / C++
 
-### xnu
+#### xnu
 
 version: [xnu-4903.221.2](https://opensource.apple.com/source/xnu/xnu-4903.221.2)
 
@@ -30,6 +35,10 @@ version: [xnu-4903.221.2](https://opensource.apple.com/source/xnu/xnu-4903.221.2
 - [xnu/osfmk/kern/syscall_sw.c](https://opensource.apple.com/source/xnu/xnu-4903.221.2/osfmk/kern/syscall_sw.c.auto.html)
 - [xnu/osfmk/kern/syscall_sw.h](https://opensource.apple.com/source/xnu/xnu-4903.221.2/osfmk/kern/syscall_sw.h.auto.html)
     - opensource.apple.com
+
+### Python
+
+- [giampaolo/psutil: Cross-platform lib for process and system monitoring in Python](https://github.com/giampaolo/psutil)
 
 ## darwin mach syscall
 
