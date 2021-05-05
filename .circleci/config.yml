@@ -6,10 +6,14 @@ orbs:
 
 jobs:
   test:
-    executor: golang/macos
-    working_directory: ~/go/src/go-darwin.dev/mach
+    macos:
+      xcode: 12.5.0
+    shell: "/bin/bash --login -e -o pipefail"
     environment:
-      GO111MODULE: "on"
+      PATH: /Users/distiller/go/bin:/usr/local/go/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+      GOPATH: /Users/distiller/go
+    resource_class: m2.medium
+    working_directory: ~/go/src/go-darwin.dev/mach
     steps:
       - run:
           name: Show versions
@@ -20,7 +24,7 @@ jobs:
             system_profiler SPHardwareDataType
       - checkout
       - golang/install:
-          version: 1.14.2
+          version: 1.16.3
       - golang/gomod:
           file: "go.mod"
           paths: "~/go/pkg/mod"
@@ -36,14 +40,18 @@ jobs:
           path: /tmp/test-results
 
   lint:
-    executor: golang/macos
-    working_directory: ~/go/src/go-darwin.dev/mach
+    macos:
+      xcode: 12.5.0
+    shell: "/bin/bash --login -e -o pipefail"
     environment:
-      GO111MODULE: "on"
+      PATH: /Users/distiller/go/bin:/usr/local/go/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+      GOPATH: /Users/distiller/go
+    resource_class: m2.medium
+    working_directory: ~/go/src/go-darwin.dev/mach
     steps:
       - checkout
       - golang/install:
-          version: 1.14.2
+          version: 1.16.3
       - golang/gomod:
           file: "go.mod"
           paths: "~/go/pkg/mod"
