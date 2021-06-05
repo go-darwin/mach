@@ -36,14 +36,14 @@ TEXT ·hostSelfTrap(SB), NOSPLIT, $8
 
 // func machMsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) (ret uint32)
 TEXT ·machMsgTrap(SB), NOSPLIT, $40
-	MOVQ  msg+0(FP), DI
-	MOVL  opt+8(FP), SI
-	MOVL  ssize+0(SP), DX
-	MOVL  rsize+0(SP), R10
-	MOVL  rname+0(SP), R8
-	MOVL  to+0(SP), R9
-	MOVL  not+0(SP), R11
+	MOVL  opt+8(FP), SI       // arg 2 opt
+	MOVL  ssize+0(SP), DX     // arg 3 ssize
+	MOVL  rsize+0(SP), R10    // arg 4 rsize
+	MOVL  rname+0(SP), R8     // arg 5 rname
+	MOVL  to+0(SP), R9        // arg 6 to
+	MOVL  not+0(SP), R11      // arg 7 not
 	PUSHQ R11                 // seventh arg, on stack
+	MOVQ  msg+0(FP), DI       // arg 1 msg
 	MOVL  $(0x1000000+31), AX // 31: mach_msg_trap
 	SYSCALL
 	POPQ  R11
