@@ -49,3 +49,38 @@ TEXT ·machMsgTrap(SB), NOSPLIT, $40
 	POPQ  R11
 	MOVL  AX, ret+32(FP)
 	RET
+
+// func threadGetSpecialReplyPort() (ret MachPortName)
+TEXT ·threadGetSpecialReplyPort(SB), NOSPLIT, $8
+	MOVL $(0x1000000+50), AX // 50: thread_get_special_reply_port
+	SYSCALL
+	MOVL AX, ret+0(FP)
+	RET
+
+// func pfzExit() (ret sys.KernReturn)
+TEXT ·pfzExit(SB), NOSPLIT, $8
+	MOVL $(0x1000000+58), AX // 58: pfz_exit
+	SYSCALL
+	MOVL AX, ret+0(FP)
+	RET
+
+// func swtchPri() (ret bool)
+TEXT ·swtchPri(SB), NOSPLIT, $8
+	MOVL $(0x1000000+59), AX // 59: swtch_pri
+	SYSCALL
+	MOVL AX, ret+0(FP)
+	RET
+
+// func swtch() (ret bool)
+TEXT ·swtch(SB), NOSPLIT, $8
+	MOVL $(0x1000000+60), AX // 60: swtch
+	SYSCALL
+	MOVL AX, ret+0(FP)
+	RET
+
+// func mkTimerCreateTrap() (ret MachPortName)
+TEXT ·mkTimerCreateTrap(SB), NOSPLIT, $8
+	MOVL $(0x1000000+91), AX // 91: mk_timer_create_trap
+	SYSCALL
+	MOVL AX, ret+0(FP)
+	RET

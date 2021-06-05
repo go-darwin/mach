@@ -1,0 +1,4 @@
+go-darwin.dev/sys v0.0.0-20210605031643-07cbbed69820 h1:mV4o5LEYXjC+rNVGpmNTRnsBbbf1BfWfqou57vtEdxM=
+go-darwin.dev/sys v0.0.0-20210605031643-07cbbed69820/go.mod h1:xZoYk+E7RLPFWOgdYp0CyiQRew8xYRBp/PuU0scgWZ8=
+golang.org/x/sys v0.0.0-20210603125802-9665404d3644 h1:CA1DEQ4NdKphKeL70tvsWNdT5oFh1lOjihRcEDROi0I=
+golang.org/x/sys v0.0.0-20210603125802-9665404d3644/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=

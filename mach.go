@@ -8,6 +8,8 @@ package mach
 
 import (
 	"unsafe"
+
+	"go-darwin.dev/sys"
 )
 
 //go:nosplit
@@ -101,4 +103,76 @@ func machMsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) (
 //  mach_trap:31: mach_msg_trap
 func MsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) uint32 {
 	return machMsgTrap(msg, opt, ssize, rsize, rname, to, not)
+}
+
+//go:nosplit
+func threadGetSpecialReplyPort() (ret MachPortName)
+
+// ThreadGetSpecialReplyPort allocate a special reply port for the calling thread.
+//
+// Returns the
+//
+//  mach_port_name_t
+// send right & receive right for special reply port.
+//  MACH_PORT_NULL
+// if there are any resource failures.
+//
+// or other errors.
+//
+//  mach_trap:50: thread_get_special_reply_port
+func ThreadGetSpecialReplyPort() (ret MachPortName) {
+	return threadGetSpecialReplyPort()
+}
+
+//go:nosplit
+func pfzExit() (ret sys.KernReturn)
+
+// PfzExit called from commpage to take a delayed preemption when exiting
+// the "Preemption Free Zone" (PFZ).
+//
+//  mach_trap:58: pfz_exit
+func PfzExit() (ret sys.KernReturn) {
+	return pfzExit()
+}
+
+//go:nosplit
+func swtchPri() (ret bool)
+
+// SwtchPri attempt to context switch (logic in
+// thread_block no-ops the context switch if nothing would happen).
+//
+// A boolean is returned that indicates whether there is anything
+// else runnable.
+//
+// That's no excuse to spin, though.
+//
+//  mach_trap:59: swtch_pri
+func SwtchPri() (ret bool) {
+	return swtchPri()
+}
+
+//go:nosplit
+func swtch() (ret bool)
+
+// Swtch attempt to context switch (logic in
+// thread_block no-ops the context switch if nothing would happen).
+//
+// A boolean is returned that indicates whether there is anything
+// else runnable.
+//
+// That's no excuse to spin, though.
+//
+//  mach_trap:60: swtch
+func Swtch() (ret bool) {
+	return swtch()
+}
+
+//go:nosplit
+func mkTimerCreateTrap() (ret MachPortName)
+
+// MkTimerCreateTrap makes timer_create trap.
+//
+//  mach_trap:91: mk_timer_create_trap
+func MkTimerCreateTrap() (ret MachPortName) {
+	return mkTimerCreateTrap()
 }
