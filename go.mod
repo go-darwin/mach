@@ -1,6 +1,6 @@
 module go-darwin.dev/mach
 
-go 1.17
+go 1.16
 
 require (
 	go-darwin.dev/sys v0.0.0-20210605031643-07cbbed69820
