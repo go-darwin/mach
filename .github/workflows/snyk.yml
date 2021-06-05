@@ -1,0 +1,19 @@
+name: "Snyk"
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '30 3 * * 6'
+
+jobs:
+  security:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@main
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/golang@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
