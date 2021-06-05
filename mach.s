@@ -68,14 +68,14 @@ TEXT ·pfzExit(SB), NOSPLIT, $8
 TEXT ·swtchPri(SB), NOSPLIT, $8
 	MOVL $(0x1000000+59), AX // 59: swtch_pri
 	SYSCALL
-	MOVL AX, ret+0(FP)
+	SETEQ ret+0(FP)
 	RET
 
 // func swtch() (ret bool)
 TEXT ·swtch(SB), NOSPLIT, $8
 	MOVL $(0x1000000+60), AX // 60: swtch
 	SYSCALL
-	MOVL AX, ret+0(FP)
+	SETEQ ret+0(FP)
 	RET
 
 // func mkTimerCreateTrap() (ret MachPortName)
