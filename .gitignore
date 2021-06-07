@@ -17,6 +17,9 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
+# Dependency directories (remove the comment below to include it)
+vendor/
+
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 *.o
 *.a
@@ -46,5 +49,5 @@ _testmain.go
 # coverage
 coverage.*
 
-# binary
+# binary, tools
 bin/
