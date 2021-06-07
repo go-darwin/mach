@@ -51,3 +51,5 @@ coverage.*
 
 # binary, tools
 bin/
+# internal
+internal/mkmachsyscall/mkmachsyscall
