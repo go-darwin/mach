@@ -1,4 +1,4 @@
-go-darwin.dev/sys v0.0.0-20210605031643-07cbbed69820 h1:mV4o5LEYXjC+rNVGpmNTRnsBbbf1BfWfqou57vtEdxM=
-go-darwin.dev/sys v0.0.0-20210605031643-07cbbed69820/go.mod h1:xZoYk+E7RLPFWOgdYp0CyiQRew8xYRBp/PuU0scgWZ8=
-golang.org/x/sys v0.0.0-20210603125802-9665404d3644 h1:CA1DEQ4NdKphKeL70tvsWNdT5oFh1lOjihRcEDROi0I=
-golang.org/x/sys v0.0.0-20210603125802-9665404d3644/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
+github.com/go-darwin/sys v0.0.0-20211011132137-c7d03cd1cd29 h1:2WN8xEfXJpna51kMUuAWY6gKHxSlFua539Dt1KbYGwk=
+github.com/go-darwin/sys v0.0.0-20211011132137-c7d03cd1cd29/go.mod h1:ndbEpQn9Ora2ekVhBBWH+VCJc0BqubtKSuvqwPVyzD0=
+golang.org/x/sys v0.0.0-20210616094352-59db8d763f22 h1:RqytpXGR1iVNX7psjB3ff8y7sNFinVFvkx1c8SjBkio=
+golang.org/x/sys v0.0.0-20210616094352-59db8d763f22/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=

@@ -13,7 +13,7 @@ executors:
       PATH: /Users/distiller/go/bin:/usr/local/go/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
       GOPATH: /Users/distiller/go
     resource_class: m2.medium
-    working_directory: ~/go/src/go-darwin.dev/mach
+    working_directory: ~/go/src/github.com/go-darwin/mach
 
 command_vars:
   - cache_key: &cache_key gomod-{{ checksum "go.sum" }}-{{ checksum "go.mod" }}
@@ -42,12 +42,12 @@ commands:
           name: "Save tools cache"
           key: *cache_tools_key
           paths:
-            - ~/go/src/go-darwin.dev/mach/tools/bin
+            - ~/go/src/github.com/go-darwin/mach/tools/bin
       - persist_to_workspace:
           name: "Persist vendor directory and dependencies tools"
           root: "~/go"
           paths:
-            - src/go-darwin.dev/mach/tools/bin
+            - src/github.com/go-darwin/mach/tools/bin
             - pkg/mod/cache
 
   store_test_results_artifacts:
@@ -81,7 +81,7 @@ jobs:
       - run:
           name: "Download project tool dependencies"
           command: |
-            if [ -z $(find ~/go/src/go-darwin.dev/mach/tools/bin/ -mindepth 1 -type f | head -1) ]; then
+            if [ -z $(find ~/go/src/github.com/go-darwin/mach/tools/bin/ -mindepth 1 -type f | head -1) ]; then
               make tools
             fi
       - save_dependencies

@@ -5,4 +5,4 @@
 // +build darwin,amd64,gc
 
 // Package mach provides the low-level darwin Mach system calls.
-package mach // import "go-darwin.dev/mach"
+package mach // import "github.com/go-darwin/mach"

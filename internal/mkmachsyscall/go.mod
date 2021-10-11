@@ -1,4 +1,4 @@
-module go-darwin.dev/mach/internal/mkmachsyscall
+module github.com/go-darwin/mach/internal/mkmachsyscall
 
 go 1.17
 

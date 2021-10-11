@@ -9,7 +9,7 @@ package mach
 import (
 	"unsafe"
 
-	"go-darwin.dev/sys"
+	"github.com/go-darwin/sys"
 )
 
 //go:nosplit

@@ -1,8 +1,5 @@
-module go-darwin.dev/mach
+module github.com/go-darwin/mach
 
 go 1.16
 
-require (
-	go-darwin.dev/sys v0.0.0-20210605031643-07cbbed69820
-	golang.org/x/sys v0.0.0-20210603125802-9665404d3644 // indirect
-)
+require github.com/go-darwin/sys v0.0.0-20211011132137-c7d03cd1cd29
