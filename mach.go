@@ -12,6 +12,7 @@ import (
 	"github.com/go-darwin/sys"
 )
 
+//go:noescape
 //go:nosplit
 func machReplyPort() (ret uint32)
 
@@ -24,6 +25,7 @@ func ReplyPort() uint32 {
 	return machReplyPort()
 }
 
+//go:noescape
 //go:nosplit
 func threadSelfTrap() (ret uint32)
 
@@ -47,6 +49,7 @@ func MachThreadSelf() uint32 {
 	return threadSelfTrap()
 }
 
+//go:noescape
 //go:nosplit
 func taskSelfTrap() (ret uint32)
 
@@ -70,6 +73,7 @@ func MachTaskSelf() uint32 {
 	return taskSelfTrap()
 }
 
+//go:noescape
 //go:nosplit
 func hostSelfTrap() (ret uint32)
 
@@ -93,6 +97,7 @@ func MachHostSelf() uint32 {
 	return hostSelfTrap()
 }
 
+//go:noescape
 //go:nosplit
 func machMsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) (ret uint32)
 
@@ -105,6 +110,7 @@ func MsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) uint3
 	return machMsgTrap(msg, opt, ssize, rsize, rname, to, not)
 }
 
+//go:noescape
 //go:nosplit
 func threadGetSpecialReplyPort() (ret MachPortName)
 
@@ -124,6 +130,7 @@ func ThreadGetSpecialReplyPort() (ret MachPortName) {
 	return threadGetSpecialReplyPort()
 }
 
+//go:noescape
 //go:nosplit
 func pfzExit() (ret sys.KernReturn)
 
@@ -135,6 +142,7 @@ func PfzExit() (ret sys.KernReturn) {
 	return pfzExit()
 }
 
+//go:noescape
 //go:nosplit
 func swtchPri() (ret bool)
 
@@ -151,6 +159,7 @@ func SwtchPri() (ret bool) {
 	return swtchPri()
 }
 
+//go:noescape
 //go:nosplit
 func swtch() (ret bool)
 
@@ -167,6 +176,7 @@ func Swtch() (ret bool) {
 	return swtch()
 }
 
+//go:noescape
 //go:nosplit
 func mkTimerCreateTrap() (ret MachPortName)
 
