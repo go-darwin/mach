@@ -66,14 +66,14 @@ TEXT ·pfzExit(SB), NOSPLIT, $8
 
 // func swtchPri() (ret bool)
 TEXT ·swtchPri(SB), NOSPLIT, $8
-	MOVL $(0x1000000+59), AX // 59: swtch_pri
+	MOVL  $(0x1000000+59), AX // 59: swtch_pri
 	SYSCALL
 	SETEQ ret+0(FP)
 	RET
 
 // func swtch() (ret bool)
 TEXT ·swtch(SB), NOSPLIT, $8
-	MOVL $(0x1000000+60), AX // 60: swtch
+	MOVL  $(0x1000000+60), AX // 60: swtch
 	SYSCALL
 	SETEQ ret+0(FP)
 	RET
