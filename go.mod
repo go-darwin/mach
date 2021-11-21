@@ -1,5 +1,5 @@
 module github.com/go-darwin/mach
 
-go 1.16
+go 1.17
 
-require github.com/go-darwin/sys v0.0.0-20211011132137-c7d03cd1cd29
+require github.com/go-darwin/sys v0.0.0-20211020154219-cd3f50ae41e1
