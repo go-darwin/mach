@@ -14,27 +14,23 @@ import (
 
 //go:noescape
 //go:nosplit
-func machReplyPort() (ret uint32)
+func machReplyPort() (ret MachPortName)
 
 // ReplyPort allocate a port for the caller.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
-//
-//  mach_trap:26: mach_reply_port
-func ReplyPort() uint32 {
+func ReplyPort() MachPortName {
 	return machReplyPort()
 }
 
 //go:noescape
 //go:nosplit
-func threadSelfTrap() (ret uint32)
+func threadSelfTrap() (ret MachPortName)
 
 // ThreadSelfTrap give the caller send rights for his own thread port.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
-//
-//  mach_trap:27: thread_self_trap
-func ThreadSelfTrap() uint32 {
+func ThreadSelfTrap() MachPortName {
 	return threadSelfTrap()
 }
 
@@ -42,23 +38,19 @@ func ThreadSelfTrap() uint32 {
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
-//  mach_trap:27: thread_self_trap
-//
 // Deprecated: use ThreadSelfTrap instead of.
-func MachThreadSelf() uint32 {
+func MachThreadSelf() MachPortName {
 	return threadSelfTrap()
 }
 
 //go:noescape
 //go:nosplit
-func taskSelfTrap() (ret uint32)
+func taskSelfTrap() (ret MachPortName)
 
 // TaskSelfTrap give the caller send rights for his own task port.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
-//
-//  mach_trap:28: task_self_trap
-func TaskSelfTrap() uint32 {
+func TaskSelfTrap() MachPortName {
 	return taskSelfTrap()
 }
 
@@ -66,23 +58,19 @@ func TaskSelfTrap() uint32 {
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
-//  mach_trap:28: task_self_trap
-//
 // Deprecated: use TaskSelfTrap instead of.
-func MachTaskSelf() uint32 {
+func MachTaskSelf() MachPortName {
 	return taskSelfTrap()
 }
 
 //go:noescape
 //go:nosplit
-func hostSelfTrap() (ret uint32)
+func hostSelfTrap() (ret MachPortName)
 
 // HostSelfTrap give the caller send rights for his own host port.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
-//
-//  mach_trap:29: host_self_trap
-func HostSelfTrap() uint32 {
+func HostSelfTrap() MachPortName {
 	return hostSelfTrap()
 }
 
@@ -90,23 +78,19 @@ func HostSelfTrap() uint32 {
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
-//  mach_trap:29: host_self_trap
-//
 // Deprecated: use HostSelfTrap instead of.
-func MachHostSelf() uint32 {
+func MachHostSelf() MachPortName {
 	return hostSelfTrap()
 }
 
 //go:noescape
 //go:nosplit
-func machMsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) (ret uint32)
+func machMsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) (ret MachMsgReturn)
 
 // MsgTrap possibly send a message; possibly receive a message.
 //
 // Returns the all of mach_msg_send and mach_msg_receive error codes.
-//
-//  mach_trap:31: mach_msg_trap
-func MsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) uint32 {
+func MsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) MachMsgReturn {
 	return machMsgTrap(msg, opt, ssize, rsize, rname, to, not)
 }
 
