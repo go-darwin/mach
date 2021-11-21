@@ -12,23 +12,23 @@ import (
 
 //go:noescape
 //go:nosplit
-func machReplyPort() (ret MachPortName)
+func machReplyPort() (ret uint32)
 
 // ReplyPort allocate a port for the caller.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
-func ReplyPort() MachPortName {
+func ReplyPort() uint32 {
 	return machReplyPort()
 }
 
 //go:noescape
 //go:nosplit
-func threadSelfTrap() (ret MachPortName)
+func threadSelfTrap() (ret uint32)
 
 // ThreadSelfTrap give the caller send rights for his own thread port.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
-func ThreadSelfTrap() MachPortName {
+func ThreadSelfTrap() uint32 {
 	return threadSelfTrap()
 }
 
@@ -37,18 +37,18 @@ func ThreadSelfTrap() MachPortName {
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
 // Deprecated: use ThreadSelfTrap instead of.
-func MachThreadSelf() MachPortName {
+func MachThreadSelf() uint32 {
 	return threadSelfTrap()
 }
 
 //go:noescape
 //go:nosplit
-func taskSelfTrap() (ret MachPortName)
+func taskSelfTrap() (ret uint32)
 
 // TaskSelfTrap give the caller send rights for his own task port.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
-func TaskSelfTrap() MachPortName {
+func TaskSelfTrap() uint32 {
 	return taskSelfTrap()
 }
 
@@ -57,18 +57,18 @@ func TaskSelfTrap() MachPortName {
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
 // Deprecated: use TaskSelfTrap instead of.
-func MachTaskSelf() MachPortName {
+func MachTaskSelf() uint32 {
 	return taskSelfTrap()
 }
 
 //go:noescape
 //go:nosplit
-func hostSelfTrap() (ret MachPortName)
+func hostSelfTrap() (ret uint32)
 
 // HostSelfTrap give the caller send rights for his own host port.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
-func HostSelfTrap() MachPortName {
+func HostSelfTrap() uint32 {
 	return hostSelfTrap()
 }
 
@@ -77,24 +77,24 @@ func HostSelfTrap() MachPortName {
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
 // Deprecated: use HostSelfTrap instead of.
-func MachHostSelf() MachPortName {
+func MachHostSelf() uint32 {
 	return hostSelfTrap()
 }
 
 //go:noescape
 //go:nosplit
-func machMsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rcvName MachPortName, timeout MachMsgTimeout, notify MachPortName) (ret MachMsgReturn)
+func machMsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rcvName MachPortName, timeout MachMsgTimeout, notify MachPortName) (ret int32)
 
 // MsgTrap possibly send a message; possibly receive a message.
 //
 // Returns the all of mach_msg_send and mach_msg_receive error codes.
-func MsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rsize, rcvName MachPortName, timeout MachMsgTimeout, notify MachPortName) MachMsgReturn {
+func MsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rsize, rcvName MachPortName, timeout MachMsgTimeout, notify MachPortName) int32 {
 	return machMsgTrap(msg, option, sendSize, rcvSize, rcvName, timeout, notify)
 }
 
 //go:noescape
 //go:nosplit
-func threadGetSpecialReplyPort() (ret MachPortName)
+func threadGetSpecialReplyPort() (ret uint32)
 
 // ThreadGetSpecialReplyPort allocate a special reply port for the calling thread.
 //
@@ -106,9 +106,7 @@ func threadGetSpecialReplyPort() (ret MachPortName)
 // if there are any resource failures.
 //
 // or other errors.
-//
-//  mach_trap:50: thread_get_special_reply_port
-func ThreadGetSpecialReplyPort() (ret MachPortName) {
+func ThreadGetSpecialReplyPort() (ret uint32) {
 	return threadGetSpecialReplyPort()
 }
 
@@ -118,8 +116,6 @@ func pfzExit() (ret sys.KernReturn)
 
 // PfzExit called from commpage to take a delayed preemption when exiting
 // the "Preemption Free Zone" (PFZ).
-//
-//  mach_trap:58: pfz_exit
 func PfzExit() (ret sys.KernReturn) {
 	return pfzExit()
 }
@@ -135,8 +131,6 @@ func swtchPri() (ret bool)
 // else runnable.
 //
 // That's no excuse to spin, though.
-//
-//  mach_trap:59: swtch_pri
 func SwtchPri() (ret bool) {
 	return swtchPri()
 }
@@ -152,19 +146,15 @@ func swtch() (ret bool)
 // else runnable.
 //
 // That's no excuse to spin, though.
-//
-//  mach_trap:60: swtch
 func Swtch() (ret bool) {
 	return swtch()
 }
 
 //go:noescape
 //go:nosplit
-func mkTimerCreateTrap() (ret MachPortName)
+func mkTimerCreateTrap() (ret uint32)
 
 // MkTimerCreateTrap makes timer_create trap.
-//
-//  mach_trap:91: mk_timer_create_trap
-func MkTimerCreateTrap() (ret MachPortName) {
+func MkTimerCreateTrap() (ret uint32) {
 	return mkTimerCreateTrap()
 }
