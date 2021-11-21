@@ -5,6 +5,7 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
 	"context"
 	"flag"
@@ -13,6 +14,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	"github.com/davecgh/go-spew/spew"
@@ -61,6 +63,7 @@ func mkMachSyscall() error {
 		return fmt.Errorf("failed to get %s version %s: %w", syscallSWPath, xnuVersion, err)
 	}
 	_ = syscallSW
+
 	machTraps, err := xnuSource(xnuVersion, machTrapsPath)
 	if err != nil {
 		return fmt.Errorf("failed to get %s version %s: %w", machTrapsPath, xnuVersion, err)
@@ -72,10 +75,11 @@ func mkMachSyscall() error {
 	idx := clang.NewIndex(1, 0)
 	defer idx.Dispose()
 
-	// log.Printf("parse %s file\n", syscallSWFilename)
+	// fmt.Fprintf(os.Stderr, "parse %s file\n", syscallSWFilename)
 	// parseCfile(idx, syscallSWFilename, []clang.UnsavedFile{clang.NewUnsavedFile(syscallSWFilename, string(syscallSW))})
-	fmt.Printf("parse %s file\n", machTrapsFilename)
-	parseCfile(idx, machTrapsFilename, []clang.UnsavedFile{clang.NewUnsavedFile(machTrapsFilename, string(machTraps))})
+
+	fmt.Fprintf(os.Stderr, "parse %s file\n", machTrapsFilename)
+	parseCfile(os.Stdout, idx, machTrapsFilename, []clang.UnsavedFile{clang.NewUnsavedFile(machTrapsFilename, string(machTraps))})
 
 	// in = string(in1) + string(in2)
 	// if err := writeASMFile(in, fmt.Sprintf("zsyscall_darwin_%s.s", arch), "go1.13"); err != nil {
@@ -96,30 +100,21 @@ const clangFlags = uint32(clang.TranslationUnit_DetailedPreprocessingRecord |
 	clang.TranslationUnit_CreatePreambleOnFirstParse |
 	clang.TranslationUnit_KeepGoing)
 
-func parseCfile(idx clang.Index, filename string, unsavedFiles []clang.UnsavedFile) {
+func parseCfile(w io.Writer, idx clang.Index, filename string, unsavedFiles []clang.UnsavedFile) {
 	tu := idx.ParseTranslationUnit(filename, nil, unsavedFiles, clangFlags)
 	defer tu.Dispose()
 
-	cursor := tu.TranslationUnitCursor()
+	funcs := make(map[string]clang.Cursor)
 
-	var visit clang.CursorVisitor
-	visit = func(cursor, parent clang.Cursor) clang.ChildVisitResult {
+	cursor := tu.TranslationUnitCursor()
+	cursor.Visit(func(cursor, parent clang.Cursor) clang.ChildVisitResult {
 		if cursor.IsNull() {
 			return clang.ChildVisit_Continue
 		}
 
 		switch cursor.Kind() {
 		case clang.Cursor_FunctionDecl:
-			fmt.Printf("%s %s(", cursor.ResultType().Spelling(), cursor.Spelling())
-
-			numArgs := cursor.NumArguments()
-			for i := int32(0); i < numArgs; i++ {
-				fmt.Printf("%s %s", cursor.Argument(uint32(i)).Type().Spelling(), cursor.Argument(uint32(i)).Spelling())
-				if i+1 < numArgs {
-					fmt.Printf(", ")
-				}
-			}
-			fmt.Println(")")
+			funcs[cursor.Spelling()] = cursor
 
 			return clang.ChildVisit_Recurse
 
@@ -129,9 +124,32 @@ func parseCfile(idx clang.Index, filename string, unsavedFiles []clang.UnsavedFi
 		default:
 			return clang.ChildVisit_Recurse
 		}
-	}
+	})
 
-	cursor.Visit(visit)
+	fns := make([]string, len(funcs))
+	i := 0
+	for fn := range funcs {
+		fns[i] = fn
+		i++
+	}
+	sort.Strings(fns)
+
+	bio := bufio.NewWriter(w)
+	defer bio.Flush()
+	for _, fn := range fns {
+		cursor := funcs[fn]
+
+		fmt.Fprintf(bio, "%s %s(", cursor.ResultType().Spelling(), cursor.Spelling())
+
+		numArgs := cursor.NumArguments()
+		for i := int32(0); i < numArgs; i++ {
+			fmt.Fprintf(bio, "%s %s", cursor.Argument(uint32(i)).Type().Spelling(), cursor.Argument(uint32(i)).Spelling())
+			if i+1 < numArgs {
+				fmt.Fprintf(bio, ", ")
+			}
+		}
+		fmt.Fprintf(bio, ")\n")
+	}
 }
 
 func xnuSource(version, path string) ([]byte, error) {
