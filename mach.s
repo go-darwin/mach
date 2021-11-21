@@ -35,15 +35,15 @@ TEXT ·hostSelfTrap(SB), NOSPLIT, $8
 	RET
 
 // func machMsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rcvName MachPortName, timeout MachMsgTimeout, notify MachPortName) (ret MachMsgReturn)
-TEXT ·machMsgTrap(SB), NOSPLIT, $40
-	MOVL  option+8(FP), SI    // arg 2 opt
-	MOVL  sendSize+0(SP), DX  // arg 3 ssize
-	MOVL  rcvSize+0(SP), R10  // arg 4 rsize
-	MOVL  rcvName+0(SP), R8   // arg 5 rname
-	MOVL  timeout+0(SP), R9   // arg 6 to
-	MOVL  notify+0(SP), R11   // arg 7 not
-	PUSHQ R11                 // seventh arg, on stack
+TEXT ·machMsgTrap(SB), NOSPLIT, $0
 	MOVQ  msg+0(FP), DI       // arg 1 msg
+	MOVL  option+8(FP), SI    // arg 2 opt
+	MOVL  sendSize+12(SP), DX // arg 3 ssize
+	MOVL  rcvSize+16(SP), R10 // arg 4 rsize
+	MOVL  rcvName+20(SP), R8  // arg 5 rname
+	MOVL  timeout+24(SP), R9  // arg 6 to
+	MOVL  notify+26(SP), R11  // arg 7 not
+	PUSHQ R11                 // seventh arg, on stack
 	MOVL  $(0x1000000+31), AX // mach_msg_trap
 	SYSCALL
 	POPQ  R11
