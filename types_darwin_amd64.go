@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: Copyright 2021 The go-darwin Authors
+// Copyright 2019 The Go Darwin Authors
 // SPDX-License-Identifier: BSD-3-Clause
 
 //go:build ignore
