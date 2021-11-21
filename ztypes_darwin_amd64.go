@@ -5,7 +5,7 @@ package mach
 
 type MachPortName uint32
 
-type MachMsgNeturn int32
+type MachMsgReturn int32
 
 type MachMsgHeader struct {
 	Bits         uint32

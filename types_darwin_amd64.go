@@ -418,7 +418,7 @@ import "C"
 
 type MachPortName C.mach_port_name_t
 
-type MachMsgNeturn C.mach_msg_return_t
+type MachMsgReturn C.mach_msg_return_t
 
 type MachMsgHeader C.mach_msg_header_t
 
