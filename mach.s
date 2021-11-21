@@ -7,28 +7,28 @@
 #include "textflag.h"
 
 // func machReplyPort() (ret uint32)
-TEXT ·machReplyPort(SB), NOSPLIT, $8
+TEXT ·machReplyPort(SB), NOSPLIT, $0
 	MOVL $(0x1000000+26), AX // mach_reply_port
 	SYSCALL
 	MOVL AX, ret+0(FP)
 	RET
 
 // func threadSelfTrap() (ret uint32)
-TEXT ·threadSelfTrap(SB), NOSPLIT, $8
+TEXT ·threadSelfTrap(SB), NOSPLIT, $0
 	MOVL $(0x1000000+27), AX // thread_self_trap
 	SYSCALL
 	MOVL AX, ret+0(FP)
 	RET
 
 // func taskSelfTrap() (ret uint32)
-TEXT ·taskSelfTrap(SB), NOSPLIT, $8
+TEXT ·taskSelfTrap(SB), NOSPLIT, $0
 	MOVL $(0x1000000+28), AX // task_self_trap
 	SYSCALL
 	MOVL AX, ret+0(FP)
 	RET
 
 // func hostSelfTrap() (ret uint32)
-TEXT ·hostSelfTrap(SB), NOSPLIT, $8
+TEXT ·hostSelfTrap(SB), NOSPLIT, $0
 	MOVL $(0x1000000+29), AX // host_self_trap
 	SYSCALL
 	MOVL AX, ret+0(FP)
@@ -51,35 +51,35 @@ TEXT ·machMsgTrap(SB), NOSPLIT, $0
 	RET
 
 // func threadGetSpecialReplyPort() (ret MachPortName)
-TEXT ·threadGetSpecialReplyPort(SB), NOSPLIT, $8
+TEXT ·threadGetSpecialReplyPort(SB), NOSPLIT, $0
 	MOVL $(0x1000000+50), AX // thread_get_special_reply_port
 	SYSCALL
 	MOVL AX, ret+0(FP)
 	RET
 
 // func pfzExit() (ret sys.KernReturn)
-TEXT ·pfzExit(SB), NOSPLIT, $8
+TEXT ·pfzExit(SB), NOSPLIT, $0
 	MOVL $(0x1000000+58), AX // pfz_exit
 	SYSCALL
 	MOVL AX, ret+0(FP)
 	RET
 
 // func swtchPri() (ret bool)
-TEXT ·swtchPri(SB), NOSPLIT, $8
+TEXT ·swtchPri(SB), NOSPLIT, $0
 	MOVL  $(0x1000000+59), AX // swtch_pri
 	SYSCALL
 	SETEQ ret+0(FP)
 	RET
 
 // func swtch() (ret bool)
-TEXT ·swtch(SB), NOSPLIT, $8
+TEXT ·swtch(SB), NOSPLIT, $0
 	MOVL  $(0x1000000+60), AX // swtch
 	SYSCALL
 	SETEQ ret+0(FP)
 	RET
 
 // func mkTimerCreateTrap() (ret MachPortName)
-TEXT ·mkTimerCreateTrap(SB), NOSPLIT, $8
+TEXT ·mkTimerCreateTrap(SB), NOSPLIT, $0
 	MOVL $(0x1000000+91), AX // mk_timer_create_trap
 	SYSCALL
 	MOVL AX, ret+0(FP)
