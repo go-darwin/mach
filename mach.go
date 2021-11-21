@@ -7,8 +7,6 @@
 package mach
 
 import (
-	"unsafe"
-
 	"github.com/go-darwin/sys"
 )
 
@@ -85,13 +83,13 @@ func MachHostSelf() MachPortName {
 
 //go:noescape
 //go:nosplit
-func machMsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) (ret MachMsgReturn)
+func machMsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rcvName MachPortName, timeout MachMsgTimeout, notify MachPortName) (ret MachMsgReturn)
 
 // MsgTrap possibly send a message; possibly receive a message.
 //
 // Returns the all of mach_msg_send and mach_msg_receive error codes.
-func MsgTrap(msg unsafe.Pointer, opt, ssize, rsize, rname, to, not uint32) MachMsgReturn {
-	return machMsgTrap(msg, opt, ssize, rsize, rname, to, not)
+func MsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rsize, rcvName MachPortName, timeout MachMsgTimeout, notify MachPortName) MachMsgReturn {
+	return machMsgTrap(msg, option, sendSize, rcvSize, rcvName, timeout, notify)
 }
 
 //go:noescape
