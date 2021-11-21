@@ -16,7 +16,7 @@ import (
 	"strings"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/go-clang/clang-v3.9/clang"
+	"github.com/go-clang/clang-v13/clang"
 )
 
 func init() {
