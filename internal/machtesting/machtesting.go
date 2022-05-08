@@ -12,11 +12,9 @@ package machtesting
 import "C"
 
 func TaskSelfTrap() uint32 {
-	ret := C.task_self_trap()
-	return uint32(ret)
+	return uint32(C.task_self_trap())
 }
 
 func MachThreadSelf() uint32 {
-	ret := C.mach_thread_self()
-	return uint32(ret)
+	return uint32(C.mach_thread_self())
 }
