@@ -18,3 +18,7 @@ func TaskSelfTrap() uint32 {
 func MachThreadSelf() uint32 {
 	return uint32(C.mach_thread_self())
 }
+
+func MachHostSelf() uint32 {
+	return uint32(C.mach_host_self())
+}
