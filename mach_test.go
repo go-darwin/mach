@@ -14,3 +14,12 @@ func TestTaskSelfTrap(t *testing.T) {
 		t.Fatalf("got %d but want %d", got, want)
 	}
 }
+
+func TestThreadSelfTrap(t *testing.T) {
+	got := ThreadSelfTrap()
+	want := machtesting.MachThreadSelf()
+
+	if got != want {
+		t.Fatalf("got %d but want %d", got, want)
+	}
+}
