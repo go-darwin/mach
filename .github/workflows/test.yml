@@ -10,7 +10,7 @@ on:
 
 jobs:
   test:
-    runs-on: macos-11
+    runs-on: macos-12
 
     steps:
     - name: Install Go
