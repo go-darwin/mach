@@ -15,3 +15,8 @@ func TaskSelfTrap() uint32 {
 	ret := C.task_self_trap()
 	return uint32(ret)
 }
+
+func MachThreadSelf() uint32 {
+	ret := C.mach_thread_self()
+	return uint32(ret)
+}
