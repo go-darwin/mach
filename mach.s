@@ -42,7 +42,7 @@ TEXT ·machMsgTrap(SB), NOSPLIT, $0
 	MOVL  rcvSize+16(FP), R10 // arg 4 rsize
 	MOVL  rcvName+20(FP), R8  // arg 5 rname
 	MOVL  timeout+24(FP), R9  // arg 6 to
-	MOVL  notify+26(FP), R11  // arg 7 not
+	MOVL  notify+28(FP), R11  // arg 7 not
 	PUSHQ R11                 // seventh arg, on stack
 	MOVL  $(0x1000000+31), AX // mach_msg_trap
 	SYSCALL
