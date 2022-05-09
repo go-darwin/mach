@@ -19,7 +19,7 @@ import (
 var bootstrap_check_in_trampoline_addr uintptr
 
 func BootstrapCheckIn(bp MachPort, serviceName string, sp MachPort) error {
-	_, _, errno := sys.Syscall(bootstrap_check_in_trampoline_addr, uintptr(bp), uintptr(unsafe.Pointer(&serviceName)), uintptr(sp))
+	_, _, errno := sys.Ccall(bootstrap_check_in_trampoline_addr, uintptr(bp), uintptr(unsafe.Pointer(&serviceName)), uintptr(sp))
 	if errno != 0 {
 		return sys.KernReturn(errno)
 	}
@@ -32,7 +32,7 @@ func BootstrapCheckIn(bp MachPort, serviceName string, sp MachPort) error {
 var bootstrap_create_server_trampoline_addr uintptr
 
 func BootstrapCreateServer(bp MachPort, serverCmd string, serverUID uint32, onDemand bool, serverPort MachPort) error {
-	_, _, errno := sys.Syscall6(bootstrap_create_server_trampoline_addr, uintptr(bp), uintptr(unsafe.Pointer(&serverCmd)), uintptr(serverUID), uintptr(unsafe.Pointer(&onDemand)), uintptr(serverPort), 0)
+	_, _, errno := sys.Ccall6(bootstrap_create_server_trampoline_addr, uintptr(bp), uintptr(unsafe.Pointer(&serverCmd)), uintptr(serverUID), uintptr(unsafe.Pointer(&onDemand)), uintptr(serverPort), 0)
 	if errno != 0 {
 		return sys.KernReturn(errno)
 	}
@@ -45,7 +45,7 @@ func BootstrapCreateServer(bp MachPort, serverCmd string, serverUID uint32, onDe
 var bootstrap_create_service_trampoline_addr uintptr
 
 func BootstrapCreateService(bp MachPort, serviceName string, sp MachPort) error {
-	_, _, errno := sys.Syscall(bootstrap_create_service_trampoline_addr, uintptr(bp), uintptr(unsafe.Pointer(&serviceName)), uintptr(sp))
+	_, _, errno := sys.Ccall(bootstrap_create_service_trampoline_addr, uintptr(bp), uintptr(unsafe.Pointer(&serviceName)), uintptr(sp))
 	if errno != 0 {
 		return sys.KernReturn(errno)
 	}
@@ -58,7 +58,7 @@ func BootstrapCreateService(bp MachPort, serviceName string, sp MachPort) error 
 var bootstrap_look_up_trampoline_addr uintptr
 
 func BootstrapLookUp(bp MachPort, serviceName string, sp MachPort) error {
-	_, _, errno := sys.Syscall(bootstrap_look_up_trampoline_addr, uintptr(bp), uintptr(unsafe.Pointer(&serviceName)), uintptr(sp))
+	_, _, errno := sys.Ccall(bootstrap_look_up_trampoline_addr, uintptr(bp), uintptr(unsafe.Pointer(&serviceName)), uintptr(sp))
 	if errno != 0 {
 		return sys.KernReturn(errno)
 	}
@@ -71,7 +71,7 @@ func BootstrapLookUp(bp MachPort, serviceName string, sp MachPort) error {
 var bootstrap_parent_trampoline_addr uintptr
 
 func BootstrapParent(bp MachPort, parentPort MachPort) error {
-	_, _, errno := sys.Syscall(bootstrap_parent_trampoline_addr, uintptr(bp), uintptr(parentPort), 0)
+	_, _, errno := sys.Ccall(bootstrap_parent_trampoline_addr, uintptr(bp), uintptr(parentPort), 0)
 	if errno != 0 {
 		return sys.KernReturn(errno)
 	}
@@ -84,7 +84,7 @@ func BootstrapParent(bp MachPort, parentPort MachPort) error {
 var bootstrap_register_trampoline_addr uintptr
 
 func BootstrapRegister(bp MachPort, serviceName string, sp MachPort) error {
-	_, _, errno := sys.Syscall(bootstrap_register_trampoline_addr, uintptr(bp), uintptr(unsafe.Pointer(&serviceName)), uintptr(sp))
+	_, _, errno := sys.Ccall(bootstrap_register_trampoline_addr, uintptr(bp), uintptr(unsafe.Pointer(&serviceName)), uintptr(sp))
 	if errno != 0 {
 		return sys.KernReturn(errno)
 	}
@@ -97,7 +97,7 @@ func BootstrapRegister(bp MachPort, serviceName string, sp MachPort) error {
 var bootstrap_status_trampoline_addr uintptr
 
 func BootstrapStatus(bp MachPort, serviceName string, serviceActive BootstrapStatusT) error {
-	_, _, errno := sys.Syscall(bootstrap_status_trampoline_addr, uintptr(bp), uintptr(unsafe.Pointer(&serviceName)), uintptr(serviceActive))
+	_, _, errno := sys.Ccall(bootstrap_status_trampoline_addr, uintptr(bp), uintptr(unsafe.Pointer(&serviceName)), uintptr(serviceActive))
 	if errno != 0 {
 		return sys.KernReturn(errno)
 	}
@@ -110,7 +110,7 @@ func BootstrapStatus(bp MachPort, serviceName string, serviceActive BootstrapSta
 var bootstrap_strerror_trampoline_addr uintptr
 
 func BootstrapStrerror(r sys.KernReturn) string {
-	s, _, errno := sys.Syscall(bootstrap_strerror_trampoline_addr, uintptr(r), 0, 0)
+	s, _, errno := sys.Ccall(bootstrap_strerror_trampoline_addr, uintptr(r), 0, 0)
 	if errno != 0 {
 		return ""
 	}
@@ -123,7 +123,7 @@ func BootstrapStrerror(r sys.KernReturn) string {
 var bootstrap_subset_trampoline_addr uintptr
 
 func BootstrapSubset(bp MachPort, requestorPort MachPort, subsetPort MachPort) error {
-	_, _, errno := sys.Syscall(bootstrap_subset_trampoline_addr, uintptr(bp), uintptr(requestorPort), uintptr(subsetPort))
+	_, _, errno := sys.Ccall(bootstrap_subset_trampoline_addr, uintptr(bp), uintptr(requestorPort), uintptr(subsetPort))
 	if errno != 0 {
 		return sys.KernReturn(errno)
 	}
@@ -136,7 +136,7 @@ func BootstrapSubset(bp MachPort, requestorPort MachPort, subsetPort MachPort) e
 var bootstrap_unprivileged_trampoline_addr uintptr
 
 func BootstrapUnprivileged(bp MachPort, unprivPort MachPort) error {
-	_, _, errno := sys.Syscall(bootstrap_unprivileged_trampoline_addr, uintptr(bp), uintptr(unprivPort), 0)
+	_, _, errno := sys.Ccall(bootstrap_unprivileged_trampoline_addr, uintptr(bp), uintptr(unprivPort), 0)
 	if errno != 0 {
 		return sys.KernReturn(errno)
 	}
