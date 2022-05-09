@@ -435,6 +435,9 @@ type (
 	MachVoucherAttrKey            = C.mach_voucher_attr_key_t
 	MachVoucherAttrRawRecipe      = C.mach_voucher_attr_raw_recipe_t
 	MachVoucherAttrRawRecipeArray = C.mach_voucher_attr_raw_recipe_array_t
+	MemEntryNamePort              = C.mem_entry_name_port_t
+	MemoryObjectOffset            = C.memory_object_offset_t
+	MemoryObjectSize              = C.memory_object_size_t
 	Natural                       = C.natural_t
 	SleepType                     = C.sleep_type_t
 	ThreadPort                    = C.thread_port_t

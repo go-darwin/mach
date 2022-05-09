@@ -17,3 +17,9 @@ DATA ·mach_vm_deallocate_trampoline_addr(SB)/8, $mach_vm_deallocate_trampoline<
 
 TEXT mach_vm_deallocate_trampoline<>(SB), NOSPLIT, $0-0
 	JMP mach_vm_deallocate(SB)
+
+GLOBL ·mach_make_memory_entry_trampoline_addr(SB), RODATA, $8
+DATA ·mach_make_memory_entry_trampoline_addr(SB)/8, $mach_make_memory_entry_trampoline<>(SB)
+
+TEXT mach_make_memory_entry_trampoline<>(SB), NOSPLIT, $0-0
+	JMP mach_make_memory_entry(SB)

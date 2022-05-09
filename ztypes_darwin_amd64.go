@@ -39,6 +39,9 @@ type (
 	MachVoucherAttrKey            = uint32
 	MachVoucherAttrRawRecipe      = *uint8
 	MachVoucherAttrRawRecipeArray = *uint8
+	MemEntryNamePort              = uint32
+	MemoryObjectOffset            = uint64
+	MemoryObjectSize              = uint64
 	Natural                       = uint32
 	SleepType                     = int32
 	ThreadPort                    = uint32
