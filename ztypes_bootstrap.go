@@ -3,23 +3,23 @@
 
 package mach
 
-type BoolArrayT *uint32
+type BoolArrayT = *uint32
 
-type BootstrapPropertyArrayT *uint32
+type BootstrapPropertyArrayT = *uint32
 
-type BootstrapPropertyT uint32
+type BootstrapPropertyT = uint32
 
-type BootstrapStatusArrayT *int32
+type BootstrapStatusArrayT = *int32
 
-type BootstrapStatusT int32
+type BootstrapStatusT = int32
 
-type CmdT [512]int8
+type CmdT = [512]int8
 
-type NameArrayT *[128]int8
+type NameArrayT = *[128]int8
 
-type NameT [128]int8
+type NameT = [128]int8
 
-type BootstrapPort uint32
+type BootstrapPort = uint32
 
 const BOOTSTRAP_BAD_COUNT = 0x450
 

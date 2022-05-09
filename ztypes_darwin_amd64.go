@@ -3,11 +3,11 @@
 
 package mach
 
-type MachPortName uint32
+type MachPortName = uint32
 
-type MachMsgReturn int32
+type MachMsgReturn = int32
 
-type MachMsgHeader struct {
+type MachMsgHeader = struct {
 	Bits         uint32
 	Size         uint32
 	Remote_port  uint32
@@ -16,82 +16,82 @@ type MachMsgHeader struct {
 	Id           int32
 }
 
-type MachMsgOption int32
+type MachMsgOption = int32
 
-type MachMsgSize uint32
+type MachMsgSize = uint32
 
-type MachMsgTimeout uint32
+type MachMsgTimeout = uint32
 
-type MachMsgPriority uint32
+type MachMsgPriority = uint32
 
-type ClockRes int32
+type ClockRes = int32
 
-type SleepType int32
+type SleepType = int32
 
-type MachTimespec struct {
+type MachTimespec = struct {
 	Sec  uint32
 	Nsec int32
 }
 
-type MachVMOffset uint64
+type MachVMOffset = uint64
 
-type MachVMSize uint64
+type MachVMSize = uint64
 
-type MachPortNameArray *uint32
+type MachPortNameArray = *uint32
 
-type Natural uint32
+type Natural = uint32
 
-type Boolean uint32
+type Boolean = uint32
 
-type VMProt int32
+type VMProt = int32
 
-type VMPurgable int32
+type VMPurgable = int32
 
-type MachPortRight uint32
+type MachPortRight = uint32
 
-type MachPortDelta int32
+type MachPortDelta = int32
 
-type MachMsgTypeName uint32
+type MachMsgTypeName = uint32
 
-type MachPortFlavor int32
+type MachPortFlavor = int32
 
-type MachMsgTypeNumber uint32
+type MachMsgTypeNumber = uint32
 
-type MachPort uint32
+type MachPort = uint32
 
-type MachVoucherAttrRawRecipeArray *uint8
+type MachVoucherAttrRawRecipeArray = *uint8
 
-type MachVoucherAttrKey uint32
+type MachVoucherAttrKey = uint32
 
-type MachVoucherAttrRawRecipe *uint8
+type MachVoucherAttrRawRecipe = *uint8
 
-type IPCSpace uint32
+type IPCSpace = uint32
 
-type KernInvalidArgs struct {
+type KernInvalidArgs = struct {
 	Dummy int32
 }
 
-type MachReplyPortArgs struct {
+type MachReplyPortArgs = struct {
 	Dummy int32
 }
 
-type ThreadGetSpecialReplyPortArgs struct {
+type ThreadGetSpecialReplyPortArgs = struct {
 	Dummy int32
 }
 
-type ThreadSelfTrapArgs struct {
+type ThreadSelfTrapArgs = struct {
 	Dummy int32
 }
 
-type TaskSelfTrapArgs struct {
+type TaskSelfTrapArgs = struct {
 	Dummy int32
 }
 
-type HostSelfTrapArgs struct {
+type HostSelfTrapArgs = struct {
 	Dummy int32
 }
 
-type MachMsgOverwriteTrapArgs struct {
+type MachMsgOverwriteTrapArgs = struct {
 	Msg_l_       [0]int8
 	Msg          uint64
 	Msg_r_       [0]int8
@@ -118,17 +118,17 @@ type MachMsgOverwriteTrapArgs struct {
 	Rcv_msg      uint64
 }
 
-type SemaphoreSignalTrapArgs struct {
+type SemaphoreSignalTrapArgs = struct {
 	Name_l_ [0]int8
 	Name    uint32
 }
 
-type SemaphoreSignalAllTrapArgs struct {
+type SemaphoreSignalAllTrapArgs = struct {
 	Name_l_ [0]int8
 	Name    uint32
 }
 
-type SemaphoreSignalThreadTrapArgs struct {
+type SemaphoreSignalThreadTrapArgs = struct {
 	Signal_name_l_ [0]int8
 	Signal_name    uint32
 	Signal_name_r_ [0]int8
@@ -136,12 +136,12 @@ type SemaphoreSignalThreadTrapArgs struct {
 	Thread_name    uint32
 }
 
-type SemaphoreWaitTrapArgs struct {
+type SemaphoreWaitTrapArgs = struct {
 	Name_l_ [0]int8
 	Name    uint32
 }
 
-type SemaphoreWaitSignalTrapArgs struct {
+type SemaphoreWaitSignalTrapArgs = struct {
 	Wait_name_l_   [0]int8
 	Wait_name      uint32
 	Wait_name_r_   [0]int8
@@ -149,7 +149,7 @@ type SemaphoreWaitSignalTrapArgs struct {
 	Signal_name    uint32
 }
 
-type SemaphoreTimedwaitTrapArgs struct {
+type SemaphoreTimedwaitTrapArgs = struct {
 	Wait_name_l_ [0]int8
 	Wait_name    uint32
 	Wait_name_r_ [0]int8
@@ -160,7 +160,7 @@ type SemaphoreTimedwaitTrapArgs struct {
 	Nsec         int32
 }
 
-type SemaphoreTimedwaitSignalTrapArgs struct {
+type SemaphoreTimedwaitSignalTrapArgs = struct {
 	Wait_name_l_   [0]int8
 	Wait_name      uint32
 	Wait_name_r_   [0]int8
@@ -174,7 +174,7 @@ type SemaphoreTimedwaitSignalTrapArgs struct {
 	Nsec           int32
 }
 
-type TaskForPidArgs struct {
+type TaskForPidArgs = struct {
 	Target_tport_l_ [0]int8
 	Target_tport    uint32
 	Target_tport_r_ [0]int8
@@ -185,7 +185,7 @@ type TaskForPidArgs struct {
 	T               uint64
 }
 
-type TaskNameForPidArgs struct {
+type TaskNameForPidArgs = struct {
 	Target_tport_l_ [0]int8
 	Target_tport    uint32
 	Target_tport_r_ [0]int8
@@ -196,7 +196,7 @@ type TaskNameForPidArgs struct {
 	T               uint64
 }
 
-type PidForTaskArgs struct {
+type PidForTaskArgs = struct {
 	T_l_   [0]int8
 	T      uint32
 	T_r_   [0]int8
@@ -204,7 +204,7 @@ type PidForTaskArgs struct {
 	Pid    uint64
 }
 
-type DebugControlPortForPidArgs struct {
+type DebugControlPortForPidArgs = struct {
 	Target_tport_l_ [0]int8
 	Target_tport    uint32
 	Target_tport_r_ [0]int8
@@ -215,7 +215,7 @@ type DebugControlPortForPidArgs struct {
 	T               uint64
 }
 
-type MacxSwaponArgs struct {
+type MacxSwaponArgs = struct {
 	Filename_l_ [0]int8
 	Filename    uint64
 	Filename_r_ [0]int8
@@ -231,7 +231,7 @@ type MacxSwaponArgs struct {
 	Pad_cgo_0   [4]byte
 }
 
-type MacxSwapoffArgs struct {
+type MacxSwapoffArgs = struct {
 	Filename_l_ [0]int8
 	Filename    uint64
 	Filename_r_ [0]int8
@@ -241,7 +241,7 @@ type MacxSwapoffArgs struct {
 	Pad_cgo_0   [4]byte
 }
 
-type MacxTriggersArgs struct {
+type MacxTriggersArgs = struct {
 	Hi_water_l_   [0]int8
 	Hi_water      int32
 	Hi_water_r_   [0]int8
@@ -255,30 +255,30 @@ type MacxTriggersArgs struct {
 	Alert_port    uint32
 }
 
-type MacxBackingStoreSuspendArgs struct {
+type MacxBackingStoreSuspendArgs = struct {
 	L_      [0]int8
 	Suspend uint32
 }
 
-type MacxBackingStoreRecoveryArgs struct {
+type MacxBackingStoreRecoveryArgs = struct {
 	L_  [0]int8
 	Pid int32
 }
 
-type SwtchPriArgs struct {
+type SwtchPriArgs = struct {
 	L_  [0]int8
 	Pri int32
 }
 
-type PfzExitArgs struct {
+type PfzExitArgs = struct {
 	Dummy int32
 }
 
-type SwtchArgs struct {
+type SwtchArgs = struct {
 	Dummy int32
 }
 
-type ClockSleepTrapArgs struct {
+type ClockSleepTrapArgs = struct {
 	Clock_name_l_  [0]int8
 	Clock_name     uint32
 	Clock_name_r_  [0]int8
@@ -295,7 +295,7 @@ type ClockSleepTrapArgs struct {
 	Wakeup_time    uint64
 }
 
-type ThreadSwitchArgs struct {
+type ThreadSwitchArgs = struct {
 	Thread_name_l_ [0]int8
 	Thread_name    uint32
 	Thread_name_r_ [0]int8
@@ -306,26 +306,26 @@ type ThreadSwitchArgs struct {
 	Option_time    uint32
 }
 
-type MachTimebaseInfoTrapArgs struct {
+type MachTimebaseInfoTrapArgs = struct {
 	L_   [0]int8
 	Info uint64
 }
 
-type MachWaitUntilTrapArgs struct {
+type MachWaitUntilTrapArgs = struct {
 	L_       [0]int8
 	Deadline uint64
 }
 
-type MkTimerCreateTrapArgs struct {
+type MkTimerCreateTrapArgs = struct {
 	Dummy int32
 }
 
-type MkTimerDestroyTrapArgs struct {
+type MkTimerDestroyTrapArgs = struct {
 	L_   [0]int8
 	Name uint32
 }
 
-type MkTimerArmTrapArgs struct {
+type MkTimerArmTrapArgs = struct {
 	Name_l_        [0]int8
 	Name           uint32
 	Name_r_        [0]int8
@@ -333,7 +333,7 @@ type MkTimerArmTrapArgs struct {
 	Expire_time    uint64
 }
 
-type MkTimerArmLeewayTrapArgs struct {
+type MkTimerArmLeewayTrapArgs = struct {
 	Name_l_           [0]int8
 	Name              uint32
 	Name_r_           [0]int8
@@ -347,7 +347,7 @@ type MkTimerArmLeewayTrapArgs struct {
 	Mk_leeway         uint64
 }
 
-type MkTimerCancelTrapArgs struct {
+type MkTimerCancelTrapArgs = struct {
 	Name_l_        [0]int8
 	Name           uint32
 	Name_r_        [0]int8
@@ -355,7 +355,7 @@ type MkTimerCancelTrapArgs struct {
 	Result_time    uint64
 }
 
-type KernelrpcMachVmAllocateTrapArgs struct {
+type KernelrpcMachVmAllocateTrapArgs = struct {
 	Target_l_ [0]int8
 	Target    uint32
 	Target_r_ [0]int8
@@ -371,7 +371,7 @@ type KernelrpcMachVmAllocateTrapArgs struct {
 	Pad_cgo_0 [4]byte
 }
 
-type KernelrpcMachVmDeallocateArgs struct {
+type KernelrpcMachVmDeallocateArgs = struct {
 	Target_l_  [0]int8
 	Target     uint32
 	Target_r_  [0]int8
@@ -382,7 +382,7 @@ type KernelrpcMachVmDeallocateArgs struct {
 	Size       uint64
 }
 
-type TaskDyldProcessInfoNotifyGetTrapArgs struct {
+type TaskDyldProcessInfoNotifyGetTrapArgs = struct {
 	Addr_l_       [0]int8
 	Addr          uint64
 	Addr_r_       [0]int8
@@ -390,7 +390,7 @@ type TaskDyldProcessInfoNotifyGetTrapArgs struct {
 	Count_addr    uint64
 }
 
-type KernelrpcMachVmProtectArgs struct {
+type KernelrpcMachVmProtectArgs = struct {
 	Target_l_         [0]int8
 	Target            uint32
 	Target_r_         [0]int8
@@ -407,7 +407,7 @@ type KernelrpcMachVmProtectArgs struct {
 	New_protection    int32
 }
 
-type KernelrpcMachVmMapTrapArgs struct {
+type KernelrpcMachVmMapTrapArgs = struct {
 	Target_l_         [0]int8
 	Target            uint32
 	Target_r_         [0]int8
@@ -430,7 +430,7 @@ type KernelrpcMachVmMapTrapArgs struct {
 	Pad_cgo_0         [4]byte
 }
 
-type KernelrpcMachVmPurgableControlTrapArgs struct {
+type KernelrpcMachVmPurgableControlTrapArgs = struct {
 	Target_l_  [0]int8
 	Target     uint32
 	Target_r_  [0]int8
@@ -444,7 +444,7 @@ type KernelrpcMachVmPurgableControlTrapArgs struct {
 	State      uint64
 }
 
-type KernelrpcMachPortAllocateArgs struct {
+type KernelrpcMachPortAllocateArgs = struct {
 	Target_l_ [0]int8
 	Target    uint32
 	Target_r_ [0]int8
@@ -455,7 +455,7 @@ type KernelrpcMachPortAllocateArgs struct {
 	Name      uint64
 }
 
-type KernelrpcMachPortDeallocateArgs struct {
+type KernelrpcMachPortDeallocateArgs = struct {
 	Target_l_ [0]int8
 	Target    uint32
 	Target_r_ [0]int8
@@ -463,7 +463,7 @@ type KernelrpcMachPortDeallocateArgs struct {
 	Name      uint32
 }
 
-type KernelrpcMachPortModRefsArgs struct {
+type KernelrpcMachPortModRefsArgs = struct {
 	Target_l_ [0]int8
 	Target    uint32
 	Target_r_ [0]int8
@@ -477,7 +477,7 @@ type KernelrpcMachPortModRefsArgs struct {
 	Delta     int32
 }
 
-type KernelrpcMachPortMoveMemberArgs struct {
+type KernelrpcMachPortMoveMemberArgs = struct {
 	Target_l_ [0]int8
 	Target    uint32
 	Target_r_ [0]int8
@@ -488,7 +488,7 @@ type KernelrpcMachPortMoveMemberArgs struct {
 	After     uint32
 }
 
-type KernelrpcMachPortInsertRightArgs struct {
+type KernelrpcMachPortInsertRightArgs = struct {
 	Target_l_   [0]int8
 	Target      uint32
 	Target_r_   [0]int8
@@ -502,7 +502,7 @@ type KernelrpcMachPortInsertRightArgs struct {
 	PolyPoly    uint32
 }
 
-type KernelrpcMachPortGetAttributesArgs struct {
+type KernelrpcMachPortGetAttributesArgs = struct {
 	Target_l_ [0]int8
 	Target    uint32
 	Target_r_ [0]int8
@@ -519,7 +519,7 @@ type KernelrpcMachPortGetAttributesArgs struct {
 	Count     uint64
 }
 
-type KernelrpcMachPortInsertMemberArgs struct {
+type KernelrpcMachPortInsertMemberArgs = struct {
 	Target_l_ [0]int8
 	Target    uint32
 	Target_r_ [0]int8
@@ -530,7 +530,7 @@ type KernelrpcMachPortInsertMemberArgs struct {
 	Pset      uint32
 }
 
-type KernelrpcMachPortExtractMemberArgs struct {
+type KernelrpcMachPortExtractMemberArgs = struct {
 	Target_l_ [0]int8
 	Target    uint32
 	Target_r_ [0]int8
@@ -541,7 +541,7 @@ type KernelrpcMachPortExtractMemberArgs struct {
 	Pset      uint32
 }
 
-type KernelrpcMachPortConstructArgs struct {
+type KernelrpcMachPortConstructArgs = struct {
 	Target_l_  [0]int8
 	Target     uint32
 	Target_r_  [0]int8
@@ -555,7 +555,7 @@ type KernelrpcMachPortConstructArgs struct {
 	Name       uint64
 }
 
-type KernelrpcMachPortDestructArgs struct {
+type KernelrpcMachPortDestructArgs = struct {
 	Target_l_  [0]int8
 	Target     uint32
 	Target_r_  [0]int8
@@ -569,7 +569,7 @@ type KernelrpcMachPortDestructArgs struct {
 	Guard      uint64
 }
 
-type KernelrpcMachPortGuardArgs struct {
+type KernelrpcMachPortGuardArgs = struct {
 	Target_l_ [0]int8
 	Target    uint32
 	Target_r_ [0]int8
@@ -585,7 +585,7 @@ type KernelrpcMachPortGuardArgs struct {
 	Pad_cgo_0 [4]byte
 }
 
-type KernelrpcMachPortUnguardArgs struct {
+type KernelrpcMachPortUnguardArgs = struct {
 	Target_l_ [0]int8
 	Target    uint32
 	Target_r_ [0]int8
@@ -596,7 +596,7 @@ type KernelrpcMachPortUnguardArgs struct {
 	Guard     uint64
 }
 
-type MachGenerateActivityIdArgs struct {
+type MachGenerateActivityIdArgs = struct {
 	Target_l_      [0]int8
 	Target         uint32
 	Target_r_      [0]int8
@@ -607,7 +607,7 @@ type MachGenerateActivityIdArgs struct {
 	Activity_id    uint64
 }
 
-type HostCreateMachVoucherArgs struct {
+type HostCreateMachVoucherArgs = struct {
 	Host_l_         [0]int8
 	Host            uint32
 	Host_r_         [0]int8
@@ -621,7 +621,7 @@ type HostCreateMachVoucherArgs struct {
 	Voucher         uint64
 }
 
-type MachVoucherExtractAttrRecipeArgs struct {
+type MachVoucherExtractAttrRecipeArgs = struct {
 	Voucher_name_l_ [0]int8
 	Voucher_name    uint32
 	Voucher_name_r_ [0]int8
@@ -635,7 +635,7 @@ type MachVoucherExtractAttrRecipeArgs struct {
 	Recipe_size     uint64
 }
 
-type KernelrpcMachPortTypeArgs struct {
+type KernelrpcMachPortTypeArgs = struct {
 	Target_l_ [0]int8
 	Target    uint32
 	Target_r_ [0]int8
@@ -646,7 +646,7 @@ type KernelrpcMachPortTypeArgs struct {
 	Ptype     uint64
 }
 
-type KernelrpcMachPortRequestNotificationArgs struct {
+type KernelrpcMachPortRequestNotificationArgs = struct {
 	Target_l_     [0]int8
 	Target        uint32
 	Target_r_     [0]int8
@@ -669,7 +669,7 @@ type KernelrpcMachPortRequestNotificationArgs struct {
 	Previous      uint64
 }
 
-type IokitUserClientTrapArgs struct {
+type IokitUserClientTrapArgs = struct {
 	UserClientRef_l_ [0]int8
 	UserClientRef    *byte
 	UserClientRef_r_ [0]int8

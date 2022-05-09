@@ -18,7 +18,10 @@ JOBS := $(shell getconf _NPROCESSORS_CONF)
 ##@ generate
 
 ztypes_darwin_amd64.go: types_darwin_amd64.go
-	go tool cgo -godefs types_darwin_amd64.go | gofmt -s | tee ztypes_darwin_amd64.go && sed -i 's|${CURDIR}/||' ztypes_darwin_amd64.go
+	go tool cgo -godefs types_darwin_amd64.go | gofmt -s | tee ztypes_darwin_amd64.go > /dev/null 2>&1 && sed -i 's|${CURDIR}/||' ztypes_darwin_amd64.go
+
+ztypes_bootstrap.go: types_bootstrap.go
+	go tool cgo -godefs types_bootstrap.go | gofmt -s | tee ztypes_bootstrap.go > /dev/null 2>&1 && sed -i 's|${CURDIR}/||' ztypes_bootstrap.go
 
 
 ##@ fmt, lint
