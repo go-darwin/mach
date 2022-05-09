@@ -11,14 +11,20 @@ package machtesting
 */
 import "C"
 
-func TaskSelfTrap() uint32 {
-	return uint32(C.task_self_trap())
+type MachPortName = uint32
+
+type ThreadPort = uint32
+
+type HostNamePort = uint32
+
+func TaskSelfTrap() MachPortName {
+	return MachPortName(C.task_self_trap())
 }
 
-func MachThreadSelf() uint32 {
-	return uint32(C.mach_thread_self())
+func MachThreadSelf() ThreadPort {
+	return ThreadPort(C.mach_thread_self())
 }
 
-func MachHostSelf() uint32 {
-	return uint32(C.mach_host_self())
+func MachHostSelf() HostNamePort {
+	return HostNamePort(C.mach_host_self())
 }
