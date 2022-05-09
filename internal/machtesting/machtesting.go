@@ -11,21 +11,16 @@ package machtesting
 #include <mach/mach_interface.h>
 */
 import "C"
+import "github.com/go-darwin/mach"
 
-type MachPortName = uint32
-
-type ThreadPort = uint32
-
-type HostNamePort = uint32
-
-func TaskSelfTrap() MachPortName {
-	return MachPortName(C.task_self_trap())
+func TaskSelfTrap() mach.MachPortName {
+	return mach.MachPortName(C.task_self_trap())
 }
 
-func MachThreadSelf() ThreadPort {
-	return ThreadPort(C.mach_thread_self())
+func MachThreadSelf() mach.ThreadPort {
+	return mach.ThreadPort(C.mach_thread_self())
 }
 
-func MachHostSelf() HostNamePort {
-	return HostNamePort(C.mach_host_self())
+func MachHostSelf() mach.HostNamePort {
+	return mach.HostNamePort(C.mach_host_self())
 }
