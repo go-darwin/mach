@@ -8,6 +8,7 @@ package machtesting
 
 /*
 #include <mach/mach.h>
+#include <mach/mach_interface.h>
 */
 import "C"
 
