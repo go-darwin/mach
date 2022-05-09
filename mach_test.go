@@ -1,15 +1,16 @@
-package mach
+package mach_test
 
 import (
 	"testing"
 
+	"github.com/go-darwin/mach"
 	"github.com/go-darwin/mach/internal/machtesting"
 )
 
 func TestTaskSelfTrap(t *testing.T) {
 	t.Parallel()
 
-	got := TaskSelfTrap()
+	got := mach.TaskSelfTrap()
 	want := machtesting.TaskSelfTrap()
 
 	if got != want {
@@ -20,7 +21,7 @@ func TestTaskSelfTrap(t *testing.T) {
 func TestThreadSelfTrap(t *testing.T) {
 	t.Parallel()
 
-	got := ThreadSelfTrap()
+	got := mach.ThreadSelfTrap()
 	want := machtesting.MachThreadSelf()
 
 	if got != want {
@@ -31,7 +32,7 @@ func TestThreadSelfTrap(t *testing.T) {
 func TestHostSelfTrap(t *testing.T) {
 	t.Parallel()
 
-	got := HostSelfTrap()
+	got := mach.HostSelfTrap()
 	want := machtesting.MachHostSelf()
 
 	if got != want {
