@@ -63,6 +63,22 @@ TEXT ·machMsgTrap(SB), NOSPLIT, $0
 	MOVL  AX, ret+32(FP)
 	RET
 
+// func machMsgOverwriteTrap(sendMsg *MachMsgHeader, option MachMsgOption, sendSize, receiveLimit MachMsgSize, receiveName MachPort, timeout MachMsgTimeout, notify MachPort, receiveMsg *MachMsgHeader, receiveMsgSize MachMsgSize) (ret int32)
+TEXT ·machMsgOverwriteTrap(SB), NOSPLIT, $0
+	MOVQ  msg+0(FP), DI            // arg 1 msg
+	MOVL  option+8(FP), SI         // arg 2 option
+	MOVL  sendSize+12(FP), DX      // arg 3 sendSize
+	MOVL  receiveLimit+16(FP), R10 // arg 4 rcvSize
+	MOVL  receiveName+20(FP), R8   // arg 5 rcvName
+	MOVL  timeout+24(FP), R9       // arg 6 timeout
+	MOVL  notify+28(FP), R11       // arg 7 notify
+	PUSHQ R11                      // seventh arg, on stack
+	MOVL  $(0x1000000+32), AX      // mach_msg_overwrite
+	SYSCALL
+	POPQ  R11
+	MOVL  AX, ret+32(FP)
+	RET
+
 // func threadGetSpecialReplyPort() (ret uint32)
 TEXT ·threadGetSpecialReplyPort(SB), NOSPLIT, $0
 	PUSHQ BP                  // make a frame, keep stack aligned

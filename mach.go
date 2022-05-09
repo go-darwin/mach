@@ -97,15 +97,26 @@ func MachHostSelf() uint32 {
 
 //go:noescape
 //go:nosplit
-func machMsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rcvName MachPortName, timeout MachMsgTimeout, notify MachPortName) (ret int32)
+func machMsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rcvName MachPort, timeout MachMsgTimeout, notify MachPort) (ret int32)
 
 // MsgTrap possibly send a message; possibly receive a message.
 //
 // Returns the all of mach_msg_send and mach_msg_receive error codes.
 //
 //go:nosplit
-func MsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rsize, rcvName MachPortName, timeout MachMsgTimeout, notify MachPortName) int32 {
+func MsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rsize, rcvName MachPort, timeout MachMsgTimeout, notify MachPort) int32 {
 	return machMsgTrap(msg, option, sendSize, rcvSize, rcvName, timeout, notify)
+}
+
+//go:noescape
+//go:nosplit
+func machMsgOverwriteTrap(sendMsg *MachMsgHeader, option MachMsgOption, sendSize, receiveLimit MachMsgSize, receiveName MachPort, timeout MachMsgTimeout, notify MachPort, receiveMsg *MachMsgHeader, receiveMsgSize MachMsgSize) (ret int32)
+
+// MsgOverwriteTrap send and/or receive messages with possible overwrite.
+//
+//go:nosplit
+func MsgOverwriteTrap(sendMsg *MachMsgHeader, option MachMsgOption, sendSize, receiveLimit MachMsgSize, receiveName MachPort, timeout MachMsgTimeout, notify MachPort, receiveMsg *MachMsgHeader, receiveMsgSize MachMsgSize) int32 {
+	return machMsgOverwriteTrap(sendMsg, option, sendSize, receiveLimit, receiveName, timeout, notify, receiveMsg, receiveMsgSize)
 }
 
 //go:noescape
@@ -185,6 +196,66 @@ func mkTimerCreateTrap() (ret uint32)
 func MkTimerCreateTrap() (ret uint32) {
 	return mkTimerCreateTrap()
 }
+
+// /* 10 */ "_kernelrpc_mach_vm_allocate_trap",
+// /* 11 */ "_kernelrpc_mach_vm_purgable_control_trap",
+// /* 12 */ "_kernelrpc_mach_vm_deallocate_trap",
+// /* 13 */ "task_dyld_process_info_notify_get_trap",
+// /* 14 */ "_kernelrpc_mach_vm_protect_trap",
+// /* 15 */ "_kernelrpc_mach_vm_map_trap",
+// /* 16 */ "_kernelrpc_mach_port_allocate_trap",
+// /* 18 */ "_kernelrpc_mach_port_deallocate_trap",
+// /* 19 */ "_kernelrpc_mach_port_mod_refs_trap",
+// /* 20 */ "_kernelrpc_mach_port_move_member_trap",
+// /* 21 */ "_kernelrpc_mach_port_insert_right_trap",
+// /* 22 */ "_kernelrpc_mach_port_insert_member_trap",
+// /* 23 */ "_kernelrpc_mach_port_extract_member_trap",
+// /* 24 */ "_kernelrpc_mach_port_construct_trap",
+// /* 25 */ "_kernelrpc_mach_port_destruct_trap",
+// /* 26 */ "mach_reply_port",
+// /* 27 */ "thread_self_trap",
+// /* 28 */ "task_self_trap",
+// /* 29 */ "host_self_trap",
+// /* 31 */ "mach_msg_trap",
+// /* 32 */ "mach_msg_overwrite_trap",
+// /* 33 */ "semaphore_signal_trap",
+// /* 34 */ "semaphore_signal_all_trap",
+// /* 35 */ "semaphore_signal_thread_trap",
+// /* 36 */ "semaphore_wait_trap",
+// /* 37 */ "semaphore_wait_signal_trap",
+// /* 38 */ "semaphore_timedwait_trap",
+// /* 39 */ "semaphore_timedwait_signal_trap",
+// /* 40 */ "_kernelrpc_mach_port_get_attributes_trap",
+// /* 41 */ "_kernelrpc_mach_port_guard_trap",
+// /* 42 */ "_kernelrpc_mach_port_unguard_trap",
+// /* 43 */ "mach_generate_activity_id",
+// /* 44 */ "task_name_for_pid",
+// /* 45 */ "task_for_pid",
+// /* 46 */ "pid_for_task",
+// /* 48 */ "macx_swapon",
+// /* 49 */ "macx_swapoff",
+// /* 50 */ "thread_get_special_reply_port",
+// /* 51 */ "macx_triggers",
+// /* 52 */ "macx_backing_store_suspend",
+// /* 53 */ "macx_backing_store_recovery",
+// /* 58 */ "pfz_exit",
+// /* 59 */ "swtch_pri",
+// /* 60 */ "swtch",
+// /* 61 */ "thread_switch",
+// /* 62 */ "clock_sleep_trap",
+// /* 70 */ "host_create_mach_voucher_trap",
+// /* 72 */ "mach_voucher_extract_attr_recipe_trap",
+// /* 76 */ "_kernelrpc_mach_port_type_trap",
+// /* 77 */ "_kernelrpc_mach_port_request_notification_trap",
+// /* 89 */ "mach_timebase_info_trap",
+// /* 90 */ "mach_wait_until_trap",
+// /* 91 */ "mk_timer_create_trap",
+// /* 92 */ "mk_timer_destroy_trap",
+// /* 93 */ "mk_timer_arm_trap",
+// /* 94 */ "mk_timer_cancel_trap",
+// /* 95 */ "mk_timer_arm_leeway_trap",
+// /* 96 */ "debug_control_port_for_pid",
+// /* 100 */ "iokit_user_client_trap",
 
 // 10: kern_return_t _kernelrpc_mach_vm_allocate_trap(mach_port_name_t target, mach_vm_offset_t * addr, mach_vm_size_t size, int flags)
 // 11: kern_return_t _kernelrpc_mach_vm_purgable_control_trap(mach_port_name_t target, mach_vm_offset_t address, vm_purgable_t control, int * state)
