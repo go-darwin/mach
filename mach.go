@@ -40,7 +40,7 @@ func ThreadSelfTrap() uint32 {
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
-// Deprecated: use ThreadSelfTrap instead of.
+// Deprecated: Use ThreadSelfTrap instead of.
 //
 //go:nosplit
 func MachThreadSelf() uint32 {
@@ -64,7 +64,7 @@ func TaskSelfTrap() uint32 {
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
-// Deprecated: use TaskSelfTrap instead of.
+// Deprecated: Use TaskSelfTrap instead of.
 //
 //go:nosplit
 func MachTaskSelf() uint32 {
@@ -88,7 +88,7 @@ func HostSelfTrap() uint32 {
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
-// Deprecated: use HostSelfTrap instead of.
+// Deprecated: Use HostSelfTrap instead of.
 //
 //go:nosplit
 func MachHostSelf() uint32 {
