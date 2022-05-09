@@ -14,12 +14,12 @@ import (
 //go:nosplit
 func machReplyPort() (ret MachPort)
 
-// ReplyPort allocate a port for the caller.
+// MachReplyPort allocate a port for the caller.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
 //go:nosplit
-func ReplyPort() MachPort {
+func MachReplyPort() MachPort {
 	return machReplyPort()
 }
 
@@ -99,12 +99,12 @@ func MachHostSelf() HostNamePort {
 //go:nosplit
 func machMsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rcvName MachPort, timeout MachMsgTimeout, notify MachPort) (ret MachMsgReturn)
 
-// MsgTrap possibly send a message; possibly receive a message.
+// MachMsgTrap possibly send a message; possibly receive a message.
 //
 // Returns the all of mach_msg_send and mach_msg_receive error codes.
 //
 //go:nosplit
-func MsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rsize, rcvName MachPort, timeout MachMsgTimeout, notify MachPort) MachMsgReturn {
+func MachMsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rsize, rcvName MachPort, timeout MachMsgTimeout, notify MachPort) MachMsgReturn {
 	return machMsgTrap(msg, option, sendSize, rcvSize, rcvName, timeout, notify)
 }
 
@@ -112,10 +112,10 @@ func MsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsg
 //go:nosplit
 func machMsgOverwriteTrap(sendMsg *MachMsgHeader, option MachMsgOption, sendSize, receiveLimit MachMsgSize, receiveName MachPort, timeout MachMsgTimeout, notify MachPort, receiveMsg *MachMsgHeader, receiveMsgSize MachMsgSize) (ret MachMsgReturn)
 
-// MsgOverwriteTrap send and/or receive messages with possible overwrite.
+// MachMsgOverwriteTrap send and/or receive messages with possible overwrite.
 //
 //go:nosplit
-func MsgOverwriteTrap(sendMsg *MachMsgHeader, option MachMsgOption, sendSize, receiveLimit MachMsgSize, receiveName MachPort, timeout MachMsgTimeout, notify MachPort, receiveMsg *MachMsgHeader, receiveMsgSize MachMsgSize) MachMsgReturn {
+func MachMsgOverwriteTrap(sendMsg *MachMsgHeader, option MachMsgOption, sendSize, receiveLimit MachMsgSize, receiveName MachPort, timeout MachMsgTimeout, notify MachPort, receiveMsg *MachMsgHeader, receiveMsgSize MachMsgSize) MachMsgReturn {
 	return machMsgOverwriteTrap(sendMsg, option, sendSize, receiveLimit, receiveName, timeout, notify, receiveMsg, receiveMsgSize)
 }
 
