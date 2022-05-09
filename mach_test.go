@@ -28,7 +28,7 @@ func TestThreadSelfTrap(t *testing.T) {
 	}
 }
 
-func TestHostSelf(t *testing.T) {
+func TestHostSelfTrap(t *testing.T) {
 	t.Parallel()
 
 	got := HostSelfTrap()
