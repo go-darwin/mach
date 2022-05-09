@@ -32,7 +32,7 @@ func BootstrapCheckIn(bp MachPort, serviceName string, sp MachPort) error {
 var bootstrap_create_server_trampoline_addr uintptr
 
 func BootstrapCreateServer(bp MachPort, serverCmd string, serverUID uint32, onDemand bool, serverPort MachPort) error {
-	_, _, errno := sys.Syscall9(bootstrap_create_server_trampoline_addr, uintptr(bp), uintptr(unsafe.Pointer(&serverCmd)), uintptr(serverUID), uintptr(unsafe.Pointer(&onDemand)), uintptr(serverPort), 0, 0, 0, 0)
+	_, _, errno := sys.Syscall6(bootstrap_create_server_trampoline_addr, uintptr(bp), uintptr(unsafe.Pointer(&serverCmd)), uintptr(serverUID), uintptr(unsafe.Pointer(&onDemand)), uintptr(serverPort), 0)
 	if errno != 0 {
 		return sys.KernReturn(errno)
 	}
