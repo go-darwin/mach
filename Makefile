@@ -62,7 +62,7 @@ coverage: tools/gotestsum  ## Run test and collect coverages.
 tools: tools/''  ## Install tools
 
 tools/%: ${TOOLS_DIR}/go.mod ${TOOLS_DIR}/go.sum
-	cd tools; \
+	@cd tools; \
 	  for t in ${TOOLS}; do \
 			if [ -z '$*' ] || [ $$(basename $$t) = '$*' ]; then \
 				echo "Install $$t ..." >&2; \
