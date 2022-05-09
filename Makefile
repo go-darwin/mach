@@ -14,13 +14,11 @@ TOOLS_BIN := ${TOOLS_DIR}/bin
 TOOLS := $(shell cd ${TOOLS_DIR} && go list -v -x -f '{{ join .Imports " " }}' -tags=tools)
 
 JOBS := $(shell getconf _NPROCESSORS_CONF)
-ifeq ($(CIRCLECI),true)
-ifeq (${GO_OS},linux)
-	# https://circleci.com/changelog#container-cgroup-limits-now-visible-inside-the-docker-executor
-	JOBS := $(shell echo $$(($$(cat /sys/fs/cgroup/cpu/cpu.shares) / 1024)))
-	GO_TEST_FLAGS+=-p=${JOBS} -cpu=${JOBS}
-endif
-endif
+
+##@ generate
+
+ztypes_darwin_amd64.go: types_darwin_amd64.go
+	go tool cgo -godefs types_darwin_amd64.go | gofmt -s | tee ztypes_darwin_amd64.go && sed -i 's|${CURDIR}/||' ztypes_darwin_amd64.go
 
 
 ##@ fmt, lint
@@ -75,7 +73,7 @@ tools/%: ${TOOLS_DIR}/go.mod ${TOOLS_DIR}/go.sum
 .PHONY: clean
 clean:  ## Cleanups binaries and extra files in the package.
 	$(call target)
-	@$(RM) -rf *.out *.test *.prof trace.txt **/_obj ${TOOLS_BIN}
+	@$(RM) -rf *.out *.test *.prof trace.txt _obj _work ${TOOLS_BIN}
 
 
 # ----------------------------------------------------------------------------
