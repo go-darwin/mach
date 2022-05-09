@@ -695,3 +695,5 @@ type IokitUserClientTrapArgs struct {
 	P6_l_            [0]int8
 	P6               *byte
 }
+
+type ErrorType = int32

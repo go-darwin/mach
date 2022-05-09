@@ -12,12 +12,7 @@ package mach
 
 #include <stdint.h>
 
-#include <mach/clock_types.h>
-#include <mach/kern_return.h>
-#include <mach/mach_types.h>
-#include <mach/port.h>
-#include <mach/std_types.h>
-#include <mach/vm_types.h>
+#include <mach/mach.h>
 
 #include <machine/endian.h>
 
@@ -592,3 +587,5 @@ type KernelrpcMachPortRequestNotificationArgs C.struct__kernelrpc_mach_port_requ
 
 // not published to LP64 clients yet
 type IokitUserClientTrapArgs C.struct_iokit_user_client_trap_args
+
+type ErrorType = C.mach_error_t
