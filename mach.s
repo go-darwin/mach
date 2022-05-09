@@ -65,7 +65,7 @@ TEXT ·machMsgTrap(SB), NOSPLIT, $0
 
 // func machMsgOverwriteTrap(sendMsg *MachMsgHeader, option MachMsgOption, sendSize, receiveLimit MachMsgSize, receiveName MachPort, timeout MachMsgTimeout, notify MachPort, receiveMsg *MachMsgHeader, receiveMsgSize MachMsgSize) (ret MachMsgReturn)
 TEXT ·machMsgOverwriteTrap(SB), NOSPLIT, $0
-	MOVQ  msg+0(FP), DI            // arg 1 msg
+	MOVQ  sendMsg+0(FP), DI        // arg 1 sendMsg
 	MOVL  option+8(FP), SI         // arg 2 option
 	MOVL  sendSize+12(FP), DX      // arg 3 sendSize
 	MOVL  receiveLimit+16(FP), R10 // arg 4 rcvSize
@@ -76,7 +76,7 @@ TEXT ·machMsgOverwriteTrap(SB), NOSPLIT, $0
 	MOVL  $(0x1000000+32), AX      // mach_msg_overwrite
 	SYSCALL
 	POPQ  R11
-	MOVL  AX, ret+32(FP)
+	MOVL  AX, ret+48(FP)
 	RET
 
 // func threadGetSpecialReplyPort() (ret sys.KernReturn)
