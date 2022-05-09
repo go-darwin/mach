@@ -4,6 +4,7 @@
 //go:build darwin && amd64
 // +build darwin,amd64
 
+#include "go_asm.h"
 #include "textflag.h"
 
 // func machReplyPort() (ret uint32)
@@ -46,7 +47,7 @@ TEXT ·hostSelfTrap(SB), NOSPLIT, $0
 	POPQ  BP
 	RET
 
-// func machMsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rcvName MachPortName, timeout MachMsgTimeout, notify MachPortName) (ret MachMsgReturn)
+// func machMsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rcvName MachPortName, timeout MachMsgTimeout, notify MachPortName) (ret int32)
 TEXT ·machMsgTrap(SB), NOSPLIT, $0
 	MOVQ  msg+0(FP), DI       // arg 1 msg
 	MOVL  option+8(FP), SI    // arg 2 option
@@ -62,7 +63,7 @@ TEXT ·machMsgTrap(SB), NOSPLIT, $0
 	MOVL  AX, ret+32(FP)
 	RET
 
-// func threadGetSpecialReplyPort() (ret MachPortName)
+// func threadGetSpecialReplyPort() (ret uint32)
 TEXT ·threadGetSpecialReplyPort(SB), NOSPLIT, $0
 	PUSHQ BP                  // make a frame, keep stack aligned
 	MOVQ  SP, BP
@@ -102,7 +103,7 @@ TEXT ·swtch(SB), NOSPLIT, $0
 	POPQ  BP
 	RET
 
-// func mkTimerCreateTrap() (ret MachPortName)
+// func mkTimerCreateTrap() (ret uint32)
 TEXT ·mkTimerCreateTrap(SB), NOSPLIT, $0
 	PUSHQ BP                  // make a frame, keep stack aligned
 	MOVQ  SP, BP
