@@ -41,8 +41,6 @@ type MachPortNameArray = *uint32
 
 type Natural = uint32
 
-type Boolean = uint32
-
 type VMProt = int32
 
 type VMPurgable = int32
@@ -66,6 +64,10 @@ type MachVoucherAttrKey = uint32
 type MachVoucherAttrRawRecipe = *uint8
 
 type IPCSpace = uint32
+
+type ThreadPort = uint32
+
+type HostNamePort = uint32
 
 type KernInvalidArgs = struct {
 	Dummy int32

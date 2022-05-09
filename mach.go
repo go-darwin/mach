@@ -12,27 +12,27 @@ import (
 
 //go:noescape
 //go:nosplit
-func machReplyPort() (ret uint32)
+func machReplyPort() (ret MachPort)
 
 // ReplyPort allocate a port for the caller.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
 //go:nosplit
-func ReplyPort() uint32 {
+func ReplyPort() MachPort {
 	return machReplyPort()
 }
 
 //go:noescape
 //go:nosplit
-func threadSelfTrap() (ret uint32)
+func threadSelfTrap() (ret ThreadPort)
 
 // ThreadSelfTrap give the caller send rights for his own thread port.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
 //go:nosplit
-func ThreadSelfTrap() uint32 {
+func ThreadSelfTrap() ThreadPort {
 	return threadSelfTrap()
 }
 
@@ -43,20 +43,20 @@ func ThreadSelfTrap() uint32 {
 // Deprecated: Use ThreadSelfTrap instead of.
 //
 //go:nosplit
-func MachThreadSelf() uint32 {
+func MachThreadSelf() ThreadPort {
 	return threadSelfTrap()
 }
 
 //go:noescape
 //go:nosplit
-func taskSelfTrap() (ret uint32)
+func taskSelfTrap() (ret MachPort)
 
 // TaskSelfTrap give the caller send rights for his own task port.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
 //go:nosplit
-func TaskSelfTrap() uint32 {
+func TaskSelfTrap() MachPort {
 	return taskSelfTrap()
 }
 
@@ -67,20 +67,20 @@ func TaskSelfTrap() uint32 {
 // Deprecated: Use TaskSelfTrap instead of.
 //
 //go:nosplit
-func MachTaskSelf() uint32 {
+func MachTaskSelf() MachPort {
 	return taskSelfTrap()
 }
 
 //go:noescape
 //go:nosplit
-func hostSelfTrap() (ret uint32)
+func hostSelfTrap() (ret HostNamePort)
 
 // HostSelfTrap give the caller send rights for his own host port.
 //
 // Returns the MACH_PORT_NULL if there are any resource failures or other errors.
 //
 //go:nosplit
-func HostSelfTrap() uint32 {
+func HostSelfTrap() HostNamePort {
 	return hostSelfTrap()
 }
 
@@ -91,37 +91,37 @@ func HostSelfTrap() uint32 {
 // Deprecated: Use HostSelfTrap instead of.
 //
 //go:nosplit
-func MachHostSelf() uint32 {
+func MachHostSelf() HostNamePort {
 	return hostSelfTrap()
 }
 
 //go:noescape
 //go:nosplit
-func machMsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rcvName MachPort, timeout MachMsgTimeout, notify MachPort) (ret int32)
+func machMsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rcvName MachPort, timeout MachMsgTimeout, notify MachPort) (ret MachMsgReturn)
 
 // MsgTrap possibly send a message; possibly receive a message.
 //
 // Returns the all of mach_msg_send and mach_msg_receive error codes.
 //
 //go:nosplit
-func MsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rsize, rcvName MachPort, timeout MachMsgTimeout, notify MachPort) int32 {
+func MsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rsize, rcvName MachPort, timeout MachMsgTimeout, notify MachPort) MachMsgReturn {
 	return machMsgTrap(msg, option, sendSize, rcvSize, rcvName, timeout, notify)
 }
 
 //go:noescape
 //go:nosplit
-func machMsgOverwriteTrap(sendMsg *MachMsgHeader, option MachMsgOption, sendSize, receiveLimit MachMsgSize, receiveName MachPort, timeout MachMsgTimeout, notify MachPort, receiveMsg *MachMsgHeader, receiveMsgSize MachMsgSize) (ret int32)
+func machMsgOverwriteTrap(sendMsg *MachMsgHeader, option MachMsgOption, sendSize, receiveLimit MachMsgSize, receiveName MachPort, timeout MachMsgTimeout, notify MachPort, receiveMsg *MachMsgHeader, receiveMsgSize MachMsgSize) (ret MachMsgReturn)
 
 // MsgOverwriteTrap send and/or receive messages with possible overwrite.
 //
 //go:nosplit
-func MsgOverwriteTrap(sendMsg *MachMsgHeader, option MachMsgOption, sendSize, receiveLimit MachMsgSize, receiveName MachPort, timeout MachMsgTimeout, notify MachPort, receiveMsg *MachMsgHeader, receiveMsgSize MachMsgSize) int32 {
+func MsgOverwriteTrap(sendMsg *MachMsgHeader, option MachMsgOption, sendSize, receiveLimit MachMsgSize, receiveName MachPort, timeout MachMsgTimeout, notify MachPort, receiveMsg *MachMsgHeader, receiveMsgSize MachMsgSize) MachMsgReturn {
 	return machMsgOverwriteTrap(sendMsg, option, sendSize, receiveLimit, receiveName, timeout, notify, receiveMsg, receiveMsgSize)
 }
 
 //go:noescape
 //go:nosplit
-func threadGetSpecialReplyPort() (ret uint32)
+func threadGetSpecialReplyPort() (ret sys.KernReturn)
 
 // ThreadGetSpecialReplyPort allocate a special reply port for the calling thread.
 //
@@ -138,7 +138,7 @@ func threadGetSpecialReplyPort() (ret uint32)
 // or other errors.
 //
 //go:nosplit
-func ThreadGetSpecialReplyPort() (ret uint32) {
+func ThreadGetSpecialReplyPort() (ret sys.KernReturn) {
 	return threadGetSpecialReplyPort()
 }
 
@@ -156,7 +156,7 @@ func PfzExit() (ret sys.KernReturn) {
 
 //go:noescape
 //go:nosplit
-func swtchPri() (ret bool)
+func swtchPri() (ret Boolean)
 
 // SwtchPri attempt to context switch (logic in
 // thread_block no-ops the context switch if nothing would happen).
@@ -167,13 +167,13 @@ func swtchPri() (ret bool)
 // That's no excuse to spin, though.
 //
 //go:nosplit
-func SwtchPri() (ret bool) {
+func SwtchPri() (ret Boolean) {
 	return swtchPri()
 }
 
 //go:noescape
 //go:nosplit
-func swtch() (ret bool)
+func swtch() (ret Boolean)
 
 // Swtch attempt to context switch (logic in
 // thread_block no-ops the context switch if nothing would happen).
@@ -184,16 +184,16 @@ func swtch() (ret bool)
 // That's no excuse to spin, though.
 //
 //go:nosplit
-func Swtch() (ret bool) {
+func Swtch() (ret Boolean) {
 	return swtch()
 }
 
 //go:noescape
 //go:nosplit
-func mkTimerCreateTrap() (ret uint32)
+func mkTimerCreateTrap() (ret MachPortName)
 
 // MkTimerCreateTrap makes timer_create trap.
-func MkTimerCreateTrap() (ret uint32) {
+func MkTimerCreateTrap() (ret MachPortName) {
 	return mkTimerCreateTrap()
 }
 

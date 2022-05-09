@@ -7,7 +7,7 @@
 #include "go_asm.h"
 #include "textflag.h"
 
-// func machReplyPort() (ret uint32)
+// func machReplyPort() (ret MachPort)
 TEXT ·machReplyPort(SB), NOSPLIT, $0
 	PUSHQ BP                  // make a frame, keep stack aligned
 	MOVQ  SP, BP
@@ -17,7 +17,7 @@ TEXT ·machReplyPort(SB), NOSPLIT, $0
 	POPQ  BP
 	RET
 
-// func threadSelfTrap() (ret uint32)
+// func threadSelfTrap() (ret ThreadPort)
 TEXT ·threadSelfTrap(SB), NOSPLIT, $0
 	PUSHQ BP                  // make a frame, keep stack aligned
 	MOVQ  SP, BP
@@ -27,7 +27,7 @@ TEXT ·threadSelfTrap(SB), NOSPLIT, $0
 	POPQ  BP
 	RET
 
-// func taskSelfTrap() (ret uint32)
+// func taskSelfTrap() (ret MachPort)
 TEXT ·taskSelfTrap(SB), NOSPLIT, $0
 	PUSHQ BP                  // make a frame, keep stack aligned
 	MOVQ  SP, BP
@@ -37,7 +37,7 @@ TEXT ·taskSelfTrap(SB), NOSPLIT, $0
 	POPQ  BP
 	RET
 
-// func hostSelfTrap() (ret uint32)
+// func hostSelfTrap() (ret HostNamePort)
 TEXT ·hostSelfTrap(SB), NOSPLIT, $0
 	PUSHQ BP                  // make a frame, keep stack aligned
 	MOVQ  SP, BP
@@ -47,7 +47,7 @@ TEXT ·hostSelfTrap(SB), NOSPLIT, $0
 	POPQ  BP
 	RET
 
-// func machMsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rcvName MachPortName, timeout MachMsgTimeout, notify MachPortName) (ret int32)
+// func machMsgTrap(msg *MachMsgHeader, option MachMsgOption, sendSize, rcvSize MachMsgSize, rcvName MachPort, timeout MachMsgTimeout, notify MachPort) (ret MachMsgReturn)
 TEXT ·machMsgTrap(SB), NOSPLIT, $0
 	MOVQ  msg+0(FP), DI       // arg 1 msg
 	MOVL  option+8(FP), SI    // arg 2 option
@@ -63,7 +63,7 @@ TEXT ·machMsgTrap(SB), NOSPLIT, $0
 	MOVL  AX, ret+32(FP)
 	RET
 
-// func machMsgOverwriteTrap(sendMsg *MachMsgHeader, option MachMsgOption, sendSize, receiveLimit MachMsgSize, receiveName MachPort, timeout MachMsgTimeout, notify MachPort, receiveMsg *MachMsgHeader, receiveMsgSize MachMsgSize) (ret int32)
+// func machMsgOverwriteTrap(sendMsg *MachMsgHeader, option MachMsgOption, sendSize, receiveLimit MachMsgSize, receiveName MachPort, timeout MachMsgTimeout, notify MachPort, receiveMsg *MachMsgHeader, receiveMsgSize MachMsgSize) (ret MachMsgReturn)
 TEXT ·machMsgOverwriteTrap(SB), NOSPLIT, $0
 	MOVQ  msg+0(FP), DI            // arg 1 msg
 	MOVL  option+8(FP), SI         // arg 2 option
@@ -79,7 +79,7 @@ TEXT ·machMsgOverwriteTrap(SB), NOSPLIT, $0
 	MOVL  AX, ret+32(FP)
 	RET
 
-// func threadGetSpecialReplyPort() (ret uint32)
+// func threadGetSpecialReplyPort() (ret sys.KernReturn)
 TEXT ·threadGetSpecialReplyPort(SB), NOSPLIT, $0
 	PUSHQ BP                  // make a frame, keep stack aligned
 	MOVQ  SP, BP
@@ -99,7 +99,7 @@ TEXT ·pfzExit(SB), NOSPLIT, $0
 	POPQ  BP
 	RET
 
-// func swtchPri() (ret bool)
+// swtchPri() (ret Boolean)
 TEXT ·swtchPri(SB), NOSPLIT, $0
 	PUSHQ BP                  // make a frame, keep stack aligned
 	MOVQ  SP, BP
@@ -109,7 +109,7 @@ TEXT ·swtchPri(SB), NOSPLIT, $0
 	POPQ  BP
 	RET
 
-// func swtch() (ret bool)
+// func swtch() (ret Boolean)
 TEXT ·swtch(SB), NOSPLIT, $0
 	PUSHQ BP                  // make a frame, keep stack aligned
 	MOVQ  SP, BP
@@ -119,7 +119,7 @@ TEXT ·swtch(SB), NOSPLIT, $0
 	POPQ  BP
 	RET
 
-// func mkTimerCreateTrap() (ret uint32)
+// func mkTimerCreateTrap() (ret MachPortName)
 TEXT ·mkTimerCreateTrap(SB), NOSPLIT, $0
 	PUSHQ BP                  // make a frame, keep stack aligned
 	MOVQ  SP, BP

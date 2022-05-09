@@ -437,8 +437,6 @@ type MachPortNameArray = C.mach_port_name_array_t
 
 type Natural = C.natural_t
 
-type Boolean = C.boolean_t
-
 type VMProt = C.vm_prot_t
 
 type VMPurgable = C.vm_purgable_t
@@ -462,6 +460,12 @@ type MachVoucherAttrKey = C.mach_voucher_attr_key_t
 type MachVoucherAttrRawRecipe = C.mach_voucher_attr_raw_recipe_t
 
 type IPCSpace = C.ipc_space_t
+
+type ThreadPort = C.thread_port_t
+
+type HostNamePort = C.host_name_port_t
+
+// args
 
 type KernInvalidArgs = C.struct_kern_invalid_args
 
